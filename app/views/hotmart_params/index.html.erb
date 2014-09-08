@@ -1,0 +1,27 @@
+<h1>Listing hotmart_params</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hotmart_params.each do |hotmart_param| %>
+      <tr>
+        <td><%= hotmart_param.name %></td>
+        <td><%= hotmart_param.description %></td>
+        <td><%= link_to 'Show', hotmart_param %></td>
+        <td><%= link_to 'Edit', edit_hotmart_param_path(hotmart_param) %></td>
+        <td><%= link_to 'Destroy', hotmart_param, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hotmart param', new_hotmart_param_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @hotmart_param.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hotmart_param.description %>
+</p>
+
+<%= link_to 'Edit', edit_hotmart_param_path(@hotmart_param) %> |
+<%= link_to 'Back', hotmart_params_path %>
