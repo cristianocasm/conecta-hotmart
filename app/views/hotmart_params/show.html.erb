@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = HotmartParam -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hotmart_param.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @hotmart_param.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @hotmart_param.description %></dd>
+</dl>
 
-<p>
-  <strong>Description:</strong>
-  <%= @hotmart_param.description %>
-</p>
-
-<%= link_to 'Edit', edit_hotmart_param_path(@hotmart_param) %> |
-<%= link_to 'Back', hotmart_params_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              hotmart_params_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_hotmart_param_path(@hotmart_param), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              hotmart_param_path(@hotmart_param),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

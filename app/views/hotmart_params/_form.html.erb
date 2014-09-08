@@ -1,25 +1,26 @@
-<%= form_for(@hotmart_param) do |f| %>
-  <% if @hotmart_param.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hotmart_param.errors.count, "error") %> prohibited this hotmart_param from being saved:</h2>
+<%= simple_form_for @hotmart_param, :html => { :class => "form-horizontal hotmart_param" } do |f| %>
 
-      <ul>
-      <% @hotmart_param.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= f.input :name %>
+  <%= f.input :description %>
+<!--
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
     </div>
-  <% end %>
+    <%= error_span(@hotmart_param[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@hotmart_param[:description]) %>
+  </div>
+-->
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            hotmart_params_path, :class => 'btn btn-default' %>
+
 <% end %>
