@@ -50,6 +50,10 @@ group :development do
   gem 'byebug'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer"
 # Interpretador CSS
@@ -58,4 +62,5 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 # Criação de formulários de maneira simples e integrada ao TwitterBoostrap
 gem "simple_form"
+# Criação de tabelas de maneira simples e integrada ao TwitterBootstrap
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
