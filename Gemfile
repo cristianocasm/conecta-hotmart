@@ -3,8 +3,6 @@ ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Needed for Heroku hosting
 gem 'pg'
 # Use SCSS for stylesheets
@@ -29,6 +27,8 @@ gem 'spring',        group: :development
 
 # >>>>>>>>>>>>>>> Added by Cristiano A. <<<<<<<<<<<<<<<<<<<<<<
 group :test, :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
   # Rspec for testing with specs
   gem 'rspec-rails', '~> 3.0.0'
   # Fixtures for testing with Rspec
