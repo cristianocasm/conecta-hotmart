@@ -46,6 +46,8 @@ group :development do
   gem "bullet"
   # Creates automatic reports for each view while we navigate through pages
   gem 'rack-mini-profiler'
+  # Identifies whether there is any code that is not smelling well
+  gem "rails_best_practices"
   # Helps debuggin
   gem 'byebug'
 end
