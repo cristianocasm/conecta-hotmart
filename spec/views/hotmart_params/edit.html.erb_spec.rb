@@ -12,10 +12,9 @@ RSpec.describe "hotmart_params/edit", :type => :view do
     render
 
     assert_select "form[action=?][method=?]", hotmart_param_path(@hotmart_param), "post" do
-
       assert_select "input#hotmart_param_name[name=?]", "hotmart_param[name]"
-
       assert_select "textarea#hotmart_param_description[name=?]", "hotmart_param[description]"
     end
+    
   end
 end
