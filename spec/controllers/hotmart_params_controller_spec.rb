@@ -24,11 +24,18 @@ RSpec.describe HotmartParamsController, :type => :controller do
   # HotmartParam. As you add validations to HotmartParam, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    skip({
+      name: 'API param name',
+      description: 'API param description'
+      })
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip({
+      name: 'API param name',
+      description: 'API param description',
+      invalid_field: 'value'
+      })
   }
 
   # This should return the minimal set of values that should be in the session

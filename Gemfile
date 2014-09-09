@@ -50,6 +50,11 @@ group :development do
   gem 'byebug'
 end
 
+group :test do
+  # Measures code test coverage
+  gem 'simplecov', :require => false
+end
+
 group :production do
   # Enable serving assets in production - It was important for hosting at Heroku
   gem 'rails_12factor'
