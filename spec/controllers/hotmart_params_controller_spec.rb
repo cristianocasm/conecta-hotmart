@@ -24,18 +24,17 @@ RSpec.describe HotmartParamsController, :type => :controller do
   # HotmartParam. As you add validations to HotmartParam, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip({
-      name: 'API param name',
-      description: 'API param description'
-      })
+      {
+        name: 'API param name',
+        description: 'API param description'
+      }
   }
 
   let(:invalid_attributes) {
-    skip({
-      name: 'API param name',
-      description: 'API param description',
-      invalid_field: 'value'
-      })
+      {
+        name: nil,
+        description: 'API param description',
+      }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -110,14 +109,18 @@ RSpec.describe HotmartParamsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: 'New API Param name',
+          description: 'New API Param description'
+        }
       }
 
       it "updates the requested hotmart_param" do
         hotmart_param = HotmartParam.create! valid_attributes
-        put :update, {:id => hotmart_param.to_param, :hotmart_param => new_attributes}, valid_session
-        hotmart_param.reload
-        skip("Add assertions for updated state")
+        expect {
+          put :update, {:id => hotmart_param.to_param, :hotmart_param => new_attributes}, valid_session
+          hotmart_param.reload
+        }.to change(hotmart_param, :name).from('API param name').to('New API Param name')
       end
 
       it "assigns the requested hotmart_param as @hotmart_param" do
