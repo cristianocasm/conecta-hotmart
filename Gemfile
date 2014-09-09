@@ -51,16 +51,19 @@ group :development do
 end
 
 group :production do
+  # Enable serving assets in production - It was important for hosting at Heroku
   gem 'rails_12factor'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer"
-# Interpretador CSS
+# CSS interpreter
 gem "less-rails"
 # Style
 gem "twitter-bootstrap-rails"
-# Criação de formulários de maneira simples e integrada ao TwitterBoostrap
+# Easily creates forms integrated with TwitterBoostrap
 gem "simple_form"
-# Criação de tabelas de maneira simples e integrada ao TwitterBootstrap
+# Easily creates tables integrated with TwitterBoostrap
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+# Fix some problems related to Turbolinks/JavaScript integration
+gem 'jquery-turbolinks'
