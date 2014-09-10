@@ -60,7 +60,7 @@ end
 group :production do
   # Enable serving assets in production - It was important for hosting at Heroku
   gem 'rails_12factor'
-  # Used to avoid Heroku gets idling
+  # Used to avoid Heroku gets into idle status
   gem 'newrelic_rpm'
 end
 
