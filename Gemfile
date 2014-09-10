@@ -60,6 +60,8 @@ end
 group :production do
   # Enable serving assets in production - It was important for hosting at Heroku
   gem 'rails_12factor'
+  # Used to avoid Heroku gets idling
+  gem 'newrelic_rpm'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
