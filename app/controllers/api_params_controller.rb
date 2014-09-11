@@ -12,6 +12,7 @@ class ApiParamsController < ApplicationController
   end
 
   def edit
+    @api_param = api_class.find(params[:id])
   end
 
   def create
