@@ -2,7 +2,7 @@ class ApiParamsController < ApplicationController
   before_action :set_api_name
 
   def index
-    @api = api_class.all
+    @api_params = api_class.all
   end
 
   def show
