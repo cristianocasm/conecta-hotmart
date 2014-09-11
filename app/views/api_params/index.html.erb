@@ -1,29 +1,30 @@
-<%- byebug; model_class = HotmartParam -%>
+<%- model_class = @api_name.constantize -%>
 <div class="page-header">
-  <!-- <h1>HOTMART - Parâmetros da API de Notificação</h1> -->
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <div class="table-responsive">
-  <table class="table table-striped" id='hotmart_params'>
+  <table class="table table-striped" id='api_params'>
     <thead>
       <tr>
         <th class="col-sm-1"><%= model_class.human_attribute_name(:name) %></th>
         <th class="col-sm-5"><%= model_class.human_attribute_name(:description) %></th>
+        <th class="col-sm-5"><%= model_class.human_attribute_name(:required) %></th>
         <th class="col-sm-1"><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
     <tbody>
-      <% @api_params.each do |hotmart_param| %>
+      <% @api_params.each do |api_param| %>
         <tr>
-          <td><%= hotmart_param.name %></td>
-          <td><%= hotmart_param.description %></td>
+          <td><%= api_param.name %></td>
+          <td><%= api_param.description %></td>
+          <td><%= api_param.required %></td>
           <td>
             <%= link_to t('.show', default: t("helpers.links.show")),
-                        hotmart_param_path(hotmart_param), class: 'btn btn-success btn-xs' %>
+                        hotmart_param_path(api_param), class: 'btn btn-success btn-xs' %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_hotmart_param_path(hotmart_param), :class => 'btn btn-default btn-xs' %>
+                        edit_hotmart_param_path(api_param), :class => 'btn btn-default btn-xs' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        hotmart_param_path(hotmart_param),
+                        hotmart_param_path(api_param),
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-xs btn-danger' %>
