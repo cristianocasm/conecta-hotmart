@@ -1,4 +1,2 @@
-class HotmartParam < ActiveRecord::Base
-  validates_presence_of :name, :description
-  validates_uniqueness_of :name
+class HotmartParam < ApiParam
 end

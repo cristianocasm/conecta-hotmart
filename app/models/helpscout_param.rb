@@ -1,0 +1,2 @@
+class HelpscoutParam < ApiParam
+end

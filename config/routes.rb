@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root 'hotmart_params#index'
-  resources :hotmart_params
+
+  resources :helpscout_params, controller: 'api_params', type: 'HelpscoutParam'
+  resources :hotmart_params, controller: 'api_params', type: 'HotmartParam'
+  resources :mailchimp_params, controller: 'api_params', type: 'MailchimpParam'
+  root 'api_params#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
