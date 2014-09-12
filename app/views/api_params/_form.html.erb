@@ -6,7 +6,7 @@
     <%= f.input :required %>
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-              hotmart_params_path, :class => 'btn btn-default' %>
+              script_api_path(@api_name), :class => 'btn btn-default' %>
   </div>
 
 <% end %>

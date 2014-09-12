@@ -9,7 +9,7 @@
         <th class="col-sm-1"><%= model_class.human_attribute_name(:name) %></th>
         <th class="col-sm-5"><%= model_class.human_attribute_name(:description) %></th>
         <th class="col-sm-1"><%= model_class.human_attribute_name(:required) %></th>
-        <th class="col-sm-1"><%=t '.actions', :default => t("helpers.actions") %></th>
+        <th class="col-sm-2"><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
     <tbody>
@@ -20,11 +20,11 @@
           <td><%= api_param.required %></td>
           <td>
             <%= link_to t('.show', default: t("helpers.links.show")),
-                        hotmart_param_path(api_param), class: 'btn btn-success btn-xs' %>
+                        script_api_path(@api_name, api_param), class: 'btn btn-success btn-xs' %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_hotmart_param_path(api_param), :class => 'btn btn-default btn-xs' %>
+                        script_api_path(@api_name, api_param, :edit), :class => 'btn btn-default btn-xs' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        hotmart_param_path(api_param),
+                        script_api_path(@api_name, api_param),
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-xs btn-danger' %>
@@ -36,5 +36,5 @@
 </div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_hotmart_param_path,
+            script_api_path(@api_name, nil, :new),
             :class => 'btn btn-primary' %>
