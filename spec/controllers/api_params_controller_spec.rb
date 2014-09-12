@@ -42,22 +42,6 @@ RSpec.describe ApiParamsController, :type => :controller do
   # ApiParamsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  shared_examples 'GET index' do
-    let(:api_param) { described_class.new(:valid_attributes) }
-
-    context 'as MailchimParam' do
-      it "assigns all api_params as @api_params" do
-        hotmart_param = HotmartParam.create! valid_attributes
-        get :index, {}, valid_session
-        expect(assigns(:hotmart_params)).to eq([hotmart_param])
-      end
-    end
-  end
-
-  describe MailchimParam do
-    it_behaves_like 'an api param'
-  end
-
   describe "GET index" do
     it "assigns all hotmart_params as @hotmart_params" do
       hotmart_param = HotmartParam.create! valid_attributes
