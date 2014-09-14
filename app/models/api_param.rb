@@ -1,7 +1,7 @@
 class ApiParam < ActiveRecord::Base
 
   validates_presence_of :name, :description
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: [:type, :struct, :required]
 
   # scopes for inherited models
   scope :helpscout_params, -> { where(type: 'HelpscoutParam') } 

@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ApiParamsHelper. For example:
-#
-# describe ApiParamsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+RSpec.configure do |c|
+  c.alias_it_behaves_like_to :it_has_behavior, 'has behavior:'
+end
+
 RSpec.describe ApiParamsHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it_has_behavior 'ApiParamsHelper', 'MailchimpParam', FactoryGirl.create(:mailchimp_param)
+  it_has_behavior 'ApiParamsHelper', 'HelpscoutParam', FactoryGirl.create(:helpscout_param)
+  it_has_behavior 'ApiParamsHelper', 'HotmartParam', FactoryGirl.create(:hotmart_param)
 end
