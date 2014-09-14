@@ -38,7 +38,10 @@ group :test, :development do
   # Capybara simulates real user interactions - helpful when testing views
   gem 'capybara'
   gem 'selenium-webdriver'
+  # Cleans up the database for testing - helpful to ensure that there is no data dependencies
   gem 'database_cleaner'
+  # Fakes data such as names, addresses, emails and etc. Used here with FactoryGirl gem
+  gem 'faker'
 end
 
 group :development do

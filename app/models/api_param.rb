@@ -16,9 +16,4 @@ class ApiParam < ActiveRecord::Base
   has_many :parent_api_params, :class_name => "NestedParam", :foreign_key => "child_param_id"
   has_many :parent_params, :through => :parent_api_params, :source => :api_param
 
-  # list of api_params' descendant classes
-  def self.types
-    %w[HelpscoutParam MailchimpParam HotmartParam]
-  end
-
 end

@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :accepted_value do
-    name "MyString"
-    description "MyString"
+    sequence(:name )  { Faker::Lorem.word }
+    sequence(:description) { Faker::Lorem.sentence }
     api_param_id 1
   end
 end
