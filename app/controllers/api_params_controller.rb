@@ -57,7 +57,7 @@ class ApiParamsController < ApplicationController
   end
 
   def get_api_name
-    ApiParam.types.include?(params[:type]) ? params[:type] : 'ApiParam'
+    ApiParam.descendants.map { |api| api.to_s }.include?(params[:type]) ? params[:type] : 'ApiParam'
   end
 
   def api_class
