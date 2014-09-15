@@ -1,0 +1,2 @@
+class MailchimpParam < ApiParam
+end

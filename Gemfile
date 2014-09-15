@@ -38,7 +38,12 @@ group :test, :development do
   # Capybara simulates real user interactions - helpful when testing views
   gem 'capybara'
   gem 'selenium-webdriver'
+  # Runs tests automatically
+  gem 'guard-rspec'
+  # Cleans up the database for testing - helpful to ensure that there is no data dependencies
   gem 'database_cleaner'
+  # Fakes data such as names, addresses, emails and etc. Used here with FactoryGirl gem
+  gem 'faker'
 end
 
 group :development do
@@ -55,6 +60,10 @@ end
 group :test do
   # Measures code test coverage
   gem 'simplecov', :require => false
+  # Records http requests to be used later on testing
+  gem 'vcr' # http://railscasts.com/episodes/291-testing-with-vcr -> estou usando webmock
+  # Fakes http requests
+  gem 'webmock'
 end
 
 group :production do

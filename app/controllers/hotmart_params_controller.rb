@@ -56,7 +56,7 @@ class HotmartParamsController < ApplicationController
   def destroy
     @hotmart_param.destroy
     respond_to do |format|
-      format.html { redirect_to hotmart_params_url, notice: 'Hotmart param was successfully destroyed.' }
+      format.html { redirect_to script_api_path(@api_name), notice: 'Hotmart param was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
