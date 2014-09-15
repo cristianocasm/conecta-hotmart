@@ -1,4 +1,4 @@
-<%= simple_form_for @api_param, :html => { :class => "form-horizontal" },
+<%= simple_form_for @api_param, :html => { :class => "form-vertical" },
   wrapper_mappings: {
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
@@ -6,11 +6,12 @@
     boolean: :vertical_boolean
   } do |f| %>
 
+  <div class="col-sm-5">
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :required %>
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
               script_api_path(@api_name), :class => 'btn btn-default' %>
-
+  </div>
 <% end %>
