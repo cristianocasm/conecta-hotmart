@@ -80,7 +80,7 @@ gem "less-rails"
 # Style
 gem "twitter-bootstrap-rails"
 # Easily creates forms integrated with TwitterBoostrap
-gem "simple_form"
+gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 # Easily creates tables integrated with TwitterBoostrap
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Fix some problems related to Turbolinks/JavaScript integration

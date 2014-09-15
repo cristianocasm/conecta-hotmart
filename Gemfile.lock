@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 29f8f768f1702c6d032854b870d14eadb81cea88
+  branch: master
+  specs:
+    simple_form (3.1.0.rc2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 37349993fb40fae4fa079729a25dc99d5ef3c416
   specs:
@@ -219,9 +228,6 @@ GEM
     sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
-    simple_form (3.0.2)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json
@@ -299,7 +305,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   shoulda-matchers
-  simple_form
+  simple_form (~> 3.1.0.rc1)!
   simplecov
   spring
   sqlite3
