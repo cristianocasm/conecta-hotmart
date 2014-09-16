@@ -55,6 +55,11 @@ group :development do
   gem "rails_best_practices"
   # Helps debuggin
   gem 'byebug'
+  # Generates beautyful layouts
+  gem 'rails_layout'
+  # Together, these two gems below show errors in a beauty manner
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_21]
 end
 
 group :test do
@@ -85,3 +90,5 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Fix some problems related to Turbolinks/JavaScript integration
 gem 'jquery-turbolinks'
+# User authentication
+gem 'devise'

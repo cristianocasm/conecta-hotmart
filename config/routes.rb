@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :helpscout_params, controller: 'api_params', type: 'HelpscoutParam'
   resources :hotmart_params, controller: 'api_params', type: 'HotmartParam'
   resources :mailchimp_params, controller: 'api_params', type: 'MailchimpParam'
