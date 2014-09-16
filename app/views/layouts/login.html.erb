@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Script</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+      <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+  
+  <body>
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == 'notice' ? "success" : "danger" %>">
+          <a class="close" data-dismiss="alert">×</a>
+          <%= msg %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+  
+</html>

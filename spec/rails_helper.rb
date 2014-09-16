@@ -64,4 +64,6 @@ RSpec.configure do |config|
 
   # Enables capybara to be used within specs
   config.include Capybara::DSL
+  # Enabling HTTP requests when testing localhost using Selenium
+  WebMock.disable_net_connect!(:allow_localhost => true)
 end

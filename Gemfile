@@ -37,7 +37,7 @@ group :test, :development do
   gem 'shoulda-matchers', require: false
   # Capybara simulates real user interactions - helpful when testing views
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.43'
   # Runs tests automatically
   gem 'guard-rspec'
   # Cleans up the database for testing - helpful to ensure that there is no data dependencies
@@ -83,7 +83,7 @@ gem "therubyracer"
 # CSS interpreter
 gem "less-rails"
 # Style
-gem "twitter-bootstrap-rails"
+gem "bootstrap-sass", '~> 3.2.0.2'
 # Easily creates forms integrated with TwitterBoostrap
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 # Easily creates tables integrated with TwitterBoostrap
