@@ -50,6 +50,11 @@ RSpec.describe "Devise", :type => :feature do
     end
   end
 
+  scenario "User sees login form when accessing rooting page" do
+    visit root_path
+    expect(page).to have_content('Sign in')
+  end
+
   scenario "returns 404 when trying to access '/users/sign_in' route" do
     visit '/users/sign_in'
     expect(page.status_code).to eq 404

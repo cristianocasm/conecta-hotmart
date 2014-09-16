@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+  
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
-
   resources :helpscout_params, controller: 'api_params', type: 'HelpscoutParam'
   resources :hotmart_params, controller: 'api_params', type: 'HotmartParam'
   resources :mailchimp_params, controller: 'api_params', type: 'MailchimpParam'
