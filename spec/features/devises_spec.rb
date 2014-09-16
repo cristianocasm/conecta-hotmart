@@ -13,7 +13,7 @@ RSpec.describe "Devise", :type => :feature do
       click_button 'Sign in'
     }
 
-    scenario "User logs in into system", js: true do
+    scenario "User logs in into system" do
       expect(page.current_path).to eq hotmart_params_path
     end
 
@@ -40,6 +40,14 @@ RSpec.describe "Devise", :type => :feature do
 
     end
     
+  end
+
+  feature "Forgot password form" do
+    scenario "User is able to recover its password" do
+      visit '/login'
+      click_link 'Forgot password?'
+      expect(page.current_path).to eq new_user_password_path
+    end
   end
 
   scenario "returns 404 when trying to access '/users/sign_in' route" do
