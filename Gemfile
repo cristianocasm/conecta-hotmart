@@ -44,6 +44,8 @@ group :test, :development do
   gem 'database_cleaner'
   # Fakes data such as names, addresses, emails and etc. Used here with FactoryGirl gem
   gem 'faker'
+  # Generates UML class diagrams
+  gem 'railroady'
 end
 
 group :development do

@@ -7,4 +7,5 @@
 /config/database.yml
 /config/application.yml
 /coverage
+/doc/
 rails_best_practices_output.html
