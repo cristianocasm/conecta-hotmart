@@ -8,4 +8,5 @@
 /config/application.yml
 /coverage
 /doc/
+.zeus.sock
 rails_best_practices_output.html

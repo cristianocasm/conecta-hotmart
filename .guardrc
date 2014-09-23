@@ -1,0 +1,2 @@
+Guard.options[:clear] = true
+Guard.options['show-deprecations'] = true

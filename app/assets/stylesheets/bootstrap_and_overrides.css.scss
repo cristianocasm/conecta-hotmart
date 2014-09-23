@@ -2,6 +2,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border-right: 1px solid #eee;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;

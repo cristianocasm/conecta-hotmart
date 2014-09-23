@@ -66,4 +66,19 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   # Enabling HTTP requests when testing localhost using Selenium
   WebMock.disable_net_connect!(:allow_localhost => true)
+
+  # Speed up tests by running only those with 'focus' tag
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
+  # Speed up tests by controlling Ruby Garbage Collection. It
+  # is not improving tests time actually, but is making it worst
+  # as well. Maybe it can cause some benefits when tests get bigger.
+  config.before(:all) do
+    DeferredGarbageCollection.start
+  end
+
+  config.after(:all) do
+    DeferredGarbageCollection.reconsider
+  end
 end

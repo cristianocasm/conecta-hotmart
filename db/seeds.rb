@@ -1,4 +1,29 @@
 puts "Starting db seed"
+
+Api.create!([
+  { name: 'hotmart',
+    description: 'Hotmart' },
+  { name: 'mailchimp',
+    description: 'Mailchimp' },
+  { name: 'helpscout',
+    description: 'Helpscout' }
+  ])
+
+UserType.create([
+  { name: 'admin',
+    description: 'Admin'},
+  { name: 'client',
+    description: 'Client'}
+  ])
+
+User.create!({
+    name: 'Admin',
+    password: '12345678',
+    password_confirmation: '12345678',
+    email: 'cristiano.souza.mendonca@gmail.com',
+    user_type_id: UserType.find_by_name('admin').id
+    })
+
 HotmartParam.create!([
               { name: 'hottok',
                 description: 'Um token único, gerado pelo Hotmart para você produtor. Cada conta possui o seu próprio token, e esta é a garantia que o post está sendo feito pelo Hotmart. Para ver qual é seu token, acesse o hotmart e vá em "Minha Conta -> Configurações Avançadas e API".',

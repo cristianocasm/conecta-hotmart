@@ -94,3 +94,5 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-turbolinks'
 # User authentication
 gem 'devise'
+# Helpers for fontawesome
+gem "font-awesome-rails"

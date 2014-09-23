@@ -18,11 +18,19 @@ pre {
   font-size: 11px;
 }
 
-a {
+.side_bar_link{
   color: #000;
   &:visited {
-    color: #666;
+    color: #428bca;
   }
+  &:hover {
+    color: #2a6496;
+    background-color: #000;
+  }
+}
+
+a {
+  color: #000;
   &:hover {
     color: #fff;
     background-color: #000;

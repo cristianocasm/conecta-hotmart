@@ -15,12 +15,11 @@ RSpec.describe 'Integration with APIs', type: :feature do
     }
 
     scenario "User should be able to access the API Keys dashboard" do
-      expect(page.current_path).to eq dashboard_api_keys_path
+      expect(page.current_path).to eq edit_api_key_path
     end
 
     scenario "User should be able to get his 'Notification URL Token'" do
-      click_link 'Hotmart'
-      expect(page).to have_content(user.notification_url_token)
+      expect(page).to have_content(user.token)
     end
   end
 end

@@ -5,9 +5,16 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  
   resources :helpscout_params, controller: 'api_params', type: 'HelpscoutParam'
   resources :hotmart_params, controller: 'api_params', type: 'HotmartParam'
   resources :mailchimp_params, controller: 'api_params', type: 'MailchimpParam'
+
+  resources :notifications, only: [:index, :show]
+  post "/notifications/:token", to: 'notifications#create'
+
+  get "/api_keys/edit", to: 'api_keys#edit', as: :edit_api_key
+  post "/api_keys/edit", to:'api_keys#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

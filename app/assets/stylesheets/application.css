@@ -11,6 +11,11 @@
  * file per style scope.
  *
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+.icon-green {
+    color: green;
+}
