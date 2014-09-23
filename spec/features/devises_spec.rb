@@ -2,42 +2,53 @@ require 'rails_helper'
 
 RSpec.describe "Devise", :type => :feature do
 
-  let(:user) { FactoryGirl.create(:client) }
-
   feature 'Login form' do
 
-    before(:each){
-      visit '/login'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-    }
+    feature 'as client' do
 
-    scenario "User logs in into system" do
-      expect(page.current_path).to eq hotmart_params_path
-    end
+      it_behaves_like 'User', FactoryGirl.build(:client)
 
-    scenario "Logged user is redirected to hotmart_params_path when trying to access '/login' page" do
-      visit '/login'
-      expect(page.current_path).to eq hotmart_params_path
-    end
-
-    feature 'Logout link' do
+      let(:client) { FactoryGirl.create(:client) }
 
       before(:each){
-        click_link user.name
-        click_link 'Logout'
+        visit '/login'
+        fill_in 'Email', with: client.email
+        fill_in 'Password', with: client.password
+        click_button 'Sign in'
       }
 
-      scenario "User is redirected to '/login' page when logged out" do
-        expect(page.current_path).to eq new_user_session_path
+      scenario "Client logs in into system" do
+        expect(page.current_path).to eq edit_api_key_path
       end
 
-      scenario "Non-logged-in user is redirected to '/login' form" do
-        visit hotmart_params_path
-        expect(page.current_path).to eq new_user_session_path
+      scenario "Logged client is redirected to edit_api_key_path when trying to access '/login' page" do
+        visit '/login'
+        expect(page.current_path).to eq edit_api_key_path
       end
 
+    end
+
+    feature 'as admin' do
+
+      it_behaves_like 'User', FactoryGirl.build(:admin)
+
+      let(:admin) { FactoryGirl.create(:admin) }
+
+      before(:each){
+        visit '/login'
+        fill_in 'Email', with: admin.email
+        fill_in 'Password', with: admin.password
+        click_button 'Sign in'
+      }
+
+      scenario "Admin logs in into system" do
+        expect(page.current_path).to eq hotmart_params_path
+      end
+
+      scenario "Logged admin is redirected to hotmart_params_path when trying to access '/login' page" do
+        visit '/login'
+        expect(page.current_path).to eq hotmart_params_path
+      end
     end
     
   end

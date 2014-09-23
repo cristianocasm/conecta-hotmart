@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   before_create :generate_url_token
 
+  def admin?
+    true if self.user_type.name == 'admin'
+  end
+
   private
 
   def generate_url_token

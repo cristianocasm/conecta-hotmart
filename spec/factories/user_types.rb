@@ -1,8 +1,13 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :user_type do
-    name "MyString"
-    description "MyString"
+  factory :admin_type, :class => 'UserType' do
+    name "admin"
+    description "Admin"
+  end
+
+  factory :client_type, :class => 'UserType' do
+    name "client"
+    description "Client"
   end
 end

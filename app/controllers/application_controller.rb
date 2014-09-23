@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # Overrides Devise's default methods to redirect
   # user after sign-in and sign-out
   def after_sign_in_path_for(resource)
-    hotmart_params_path
+    current_user.admin? ? hotmart_params_path : edit_api_key_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
