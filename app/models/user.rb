@@ -14,6 +14,26 @@ class User < ActiveRecord::Base
     true if self.user_type.name == 'admin'
   end
 
+  def api_key(api)
+    return if api.blank?
+    
+    api_id = Api.find_by_name(api).try(:id)
+    self.api_keys.where("api_keys.api_id = #{api_id}").try(:first)
+  end
+
+  # Retrieves user's API's key when called as following:
+  # *hotmart_api_key    - hotmart's api's key
+  # *mailchimp_api_key  - mailchimp's api's key
+  # *helpscout_api_key  - helpscout's api's key
+  def method_missing(method, *args)
+    api_name = method.to_s.match(/^(\w+)_api_key/).try(:[], 1)
+    if api_name
+      self.api_key(api_name).try(:key)
+    else
+      super
+    end
+  end
+
   private
 
   def generate_url_token

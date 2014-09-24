@@ -1,51 +1,16 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class=<%= "active" if true %>><a href="#">Hotmart</a></li>
-  <li class=<%= "active" if false %>><a href="#">Mailchimp</a></li>
-  <li class=<%= "active" if false %>><a href="#">Helpscout</a></li>
+  <li class=<%= "active" if active_tab('hotmart') %>>
+    <%= link_to t('api.hotmart'), edit_api_key_path(api: :hotmart) %>
+  </li>
+  <li class=<%= "active" if active_tab('mailchimp') %>>
+    <%= link_to t('api.mailchimp'), edit_api_key_path(api: :mailchimp) %>
+  </li>
+  <li class=<%= "active" if active_tab('helpscout') %>>
+    <%= link_to t('api.helpscout'), edit_api_key_path(api: :helpscout) %>
+  </li>
 </ul>
 
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Hotmart
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-        <mark><%= notification_url(@user.token) %></mark>
-        <%= render :partial => 'form', locals: { api: :hotmart } %>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          Mailchimp
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= render :partial => 'form', locals: { api: :mailchimp } %>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          Helpscout
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= render :partial => 'form', locals: {api: :helpscout} %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if @api == 'hotmart' %>
+  <mark><%= notification_url(@user.token) %></mark>
+<% end %>
+<%= render :partial => 'form', locals: { api: @api } %>

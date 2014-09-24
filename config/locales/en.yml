@@ -22,3 +22,8 @@
 en:
   api:
     integration: 'Integration'
+    hotmart: 'Hotmart'
+    mailchimp: 'Mailchimp'
+    helpscout: 'Helpscout'
+    key: 'Key'
+    key_updated: "Your %{api_name}'s API Key was successfully updated"

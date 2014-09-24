@@ -26,4 +26,33 @@ RSpec.describe User, :type => :model do
       expect(user.token).to eq hash
     end
   end
+
+  describe "api key fetching" do
+
+    let(:hotmart_api_key) { FactoryGirl.create(:hotmart_api_key) }
+    let(:mailchimp_api_key) { FactoryGirl.create(:mailchimp_api_key) }
+    let(:helpscout_api_key) { FactoryGirl.create(:helpscout_api_key) }
+    
+    let(:user) { FactoryGirl.create(:client) do |client|
+                   client.api_keys << [ hotmart_api_key,
+                                        mailchimp_api_key,
+                                        helpscout_api_key ]
+                  end 
+                }
+    
+    it "should return user's hotmart api key" do
+      key = user.hotmart_api_key
+      expect(key).to eq hotmart_api_key.key
+    end
+
+    it "should return user's mailchimp api key" do
+      key = user.mailchimp_api_key
+      expect(key).to eq mailchimp_api_key.key
+    end
+
+    it "should return user's helpscout api key" do
+      key = user.helpscout_api_key
+      expect(key).to eq helpscout_api_key.key
+    end
+  end
 end

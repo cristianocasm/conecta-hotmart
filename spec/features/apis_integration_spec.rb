@@ -2,44 +2,39 @@ require 'rails_helper'
 
 RSpec.describe 'Integration with APIs', type: :feature do
 
-  feature "Client API Keys dashboard" do
-
-    let(:client) { FactoryGirl.create(:client) }
-
-    before(:each) {
-      visit root_path
-      fill_in 'Email', with: client.email
-      fill_in 'Password', with: client.password
-      click_button 'Sign in'
+  it_behaves_like 'ApisIntegration' do
+    let(:user) {
+      FactoryGirl.create(:client) do |client|
+        client.api_keys << [ FactoryGirl.create(:hotmart_api_key),
+                             FactoryGirl.create(:mailchimp_api_key),
+                             FactoryGirl.create(:helpscout_api_key) ]
+      end
     }
 
-    scenario "Client should be able to access the API Keys dashboard" do
-      expect(page.current_path).to eq edit_api_key_path
-    end
-
-    scenario "Client should be able to get his 'Notification URL Token'" do
-      expect(page).to have_content(client.token)
-    end
+    before(:each) {
+      visit root_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Sign in'
+    }
   end
 
-  feature "Admin API Keys dashboard" do
-
-    let(:admin) { FactoryGirl.create(:admin) }
+  it_behaves_like 'ApisIntegration' do
+    let(:user) {
+      FactoryGirl.create(:admin) do |admin|
+        admin.api_keys << [ FactoryGirl.create(:hotmart_api_key),
+                            FactoryGirl.create(:mailchimp_api_key),
+                            FactoryGirl.create(:helpscout_api_key) ]
+      end
+    }
 
     before(:each) {
       visit root_path
-      fill_in 'Email', with: admin.email
-      fill_in 'Password', with: admin.password
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
       click_button 'Sign in'
       click_link I18n.t('api.integration')
     }
-
-    scenario "Admin should be able to access the API Keys dashboard" do
-      expect(page.current_path).to eq edit_api_key_path
-    end
-
-    scenario "Admin should be able to get his 'Notification URL Token'" do
-      expect(page).to have_content(admin.token)
-    end
   end
+
 end
