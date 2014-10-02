@@ -6,7 +6,7 @@ RSpec.describe "Devise", :type => :feature do
 
     feature 'as client' do
 
-      it_behaves_like 'User', FactoryGirl.build(:client)
+      it_behaves_like 'User', FactoryGirl.create(:client)
 
       let(:client) { FactoryGirl.create(:client) }
 
@@ -18,19 +18,19 @@ RSpec.describe "Devise", :type => :feature do
       }
 
       scenario "Client logs in into system" do
-        expect(page.current_path).to eq edit_api_key_path
+        expect(page.current_path).to eq edit_hotmart_api_key_path(client.hotmart_api_key.first.id)
       end
 
-      scenario "Logged client is redirected to edit_api_key_path when trying to access '/login' page" do
+      scenario "Logged client is redirected to edit_hotmart_api_key_path when trying to access '/login' page" do
         visit '/login'
-        expect(page.current_path).to eq edit_api_key_path
+        expect(page.current_path).to eq edit_hotmart_api_key_path(client.hotmart_api_key.first.id)
       end
 
     end
 
     feature 'as admin' do
 
-      it_behaves_like 'User', FactoryGirl.build(:admin)
+      it_behaves_like 'User', FactoryGirl.create(:admin)
 
       let(:admin) { FactoryGirl.create(:admin) }
 

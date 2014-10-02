@@ -13,8 +13,8 @@ RSpec.shared_examples 'User' do |user|
       expect(page.current_path).to eq new_user_session_path
     end
 
-    scenario "Non-logged-in user is redirected to '/login' form" do
-      visit edit_api_key_path
+    xscenario "Non-logged-in user is redirected to '/login' form" do
+      visit edit_hotmart_api_key_path(user.hotmart_api_key.first.id)
       expect(page.current_path).to eq new_user_session_path
     end
 

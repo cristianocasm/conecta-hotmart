@@ -3,11 +3,12 @@
 FactoryGirl.define do
   factory :user do
     name Faker::Name.name 
-    email Faker::Internet.email
+    sequence(:email) { Faker::Internet.email }
     password Faker::Internet.password
 
     factory :admin do
       association :user_type, factory: :admin_type
+      before(:create) { |user| user.class.skip_callback(:create, :before, :set_as_non_admin) }
     end
 
     factory :client do

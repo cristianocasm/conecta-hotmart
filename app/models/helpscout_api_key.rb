@@ -1,0 +1,2 @@
+class HelpscoutApiKey < ApiKey
+end

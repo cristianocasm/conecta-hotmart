@@ -1,4 +1,4 @@
-<%= simple_form_for @api_key, url: :edit_api_key, :html => { :class => "form-inline" },
+<%= simple_form_for @api_key, :html => { :class => "form-inline" },
   wrapper_mappings: {
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
@@ -8,7 +8,6 @@
 
   <div class="col-sm-5">
     <%= f.input :key %>
-    <%= f.input :api, as: :hidden, value: @api %>
     <%= fa_icon('check-circle 3x', class: 'icon-green', id: 'validated') if @api_key.validated? %>
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
   </div>

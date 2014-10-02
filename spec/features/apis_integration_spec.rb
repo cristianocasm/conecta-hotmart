@@ -5,9 +5,9 @@ RSpec.describe 'Integration with APIs', type: :feature do
   it_behaves_like 'ApisIntegration' do
     let(:user) {
       FactoryGirl.create(:client) do |client|
-        client.api_keys << [ FactoryGirl.create(:hotmart_api_key),
-                             FactoryGirl.create(:mailchimp_api_key),
-                             FactoryGirl.create(:helpscout_api_key) ]
+        client.hotmart_api_key.first.update_attributes(FactoryGirl.attributes_for(:hotmart_api_key))
+        client.helpscout_api_key.first.update_attributes(FactoryGirl.attributes_for(:helpscout_api_key))
+        client.mailchimp_api_key.first.update_attributes(FactoryGirl.attributes_for(:mailchimp_api_key))
       end
     }
 
@@ -22,9 +22,9 @@ RSpec.describe 'Integration with APIs', type: :feature do
   it_behaves_like 'ApisIntegration' do
     let(:user) {
       FactoryGirl.create(:admin) do |admin|
-        admin.api_keys << [ FactoryGirl.create(:hotmart_api_key),
-                            FactoryGirl.create(:mailchimp_api_key),
-                            FactoryGirl.create(:helpscout_api_key) ]
+        admin.hotmart_api_key.first.update_attributes(FactoryGirl.attributes_for(:hotmart_api_key))
+        admin.helpscout_api_key.first.update_attributes(FactoryGirl.attributes_for(:helpscout_api_key))
+        admin.mailchimp_api_key.first.update_attributes(FactoryGirl.attributes_for(:mailchimp_api_key))
       end
     }
 

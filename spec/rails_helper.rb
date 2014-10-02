@@ -22,7 +22,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  config.include ApiParamsHelper
+  # Needed to test when routing is necessary
+  config.include ApplicationHelper
 
   # Configs below aim clear database after each test
   config.use_transactional_fixtures = false

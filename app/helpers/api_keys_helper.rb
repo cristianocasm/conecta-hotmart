@@ -1,5 +1,5 @@
 module ApiKeysHelper
   def active_tab(api)
-    true if params[:api] == api
+    return true if api == params[:type]
   end
 end

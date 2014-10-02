@@ -1,14 +1,5 @@
 puts "Starting db seed"
 
-Api.create!([
-  { name: 'hotmart',
-    description: 'Hotmart' },
-  { name: 'mailchimp',
-    description: 'Mailchimp' },
-  { name: 'helpscout',
-    description: 'Helpscout' }
-  ])
-
 UserType.create([
   { name: 'admin',
     description: 'Admin'},

@@ -1,0 +1,2 @@
+class MailchimpApiKey < ApiKey
+end

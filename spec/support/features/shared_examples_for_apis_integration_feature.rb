@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.shared_examples 'ApisIntegration' do
 
   feature "User API dashboard" do
-    scenario "User should be able to access the API Keys dashboard" do
-      expect(page.current_path).to eq edit_api_key_path
+    scenario "User, with api keys, should be able to edit the Hotmart API Key" do
+      expect(page.current_path).to eq edit_hotmart_api_key_path(user.hotmart_api_key.first.id)
     end
 
     scenario "User should be able to get his 'Notification URL Token'" do
@@ -12,7 +12,7 @@ RSpec.shared_examples 'ApisIntegration' do
     end
 
     scenario "User should be able to access hotmart api" do
-      expect(page).to have_link(I18n.t('api.integration'), href: edit_api_key_path(api: :hotmart))
+      expect(page).to have_link(I18n.t('api.integration'), href: edit_hotmart_api_key_path(user.hotmart_api_key.first.id))
     end
 
     feature "API keys section" do
@@ -44,21 +44,21 @@ RSpec.shared_examples 'ApisIntegration' do
           click_link I18n.t('api.hotmart')
           fill_in I18n.t('api.key'), with: key
           click_button 'Update'
-          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'Hotmart'))
+          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'HotmartApiKey'))
         end
 
         scenario "User should be able to update his Mailchimp API key" do
           click_link I18n.t('api.mailchimp')
           fill_in I18n.t('api.key'), with: key
           click_button 'Update'
-          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'Mailchimp'))
+          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'MailchimpApiKey'))
         end
 
         scenario "User should be able to update his Helpscout API key" do
           click_link I18n.t('api.helpscout')
           fill_in I18n.t('api.key'), with: key
           click_button 'Update'
-          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'Helpscout'))
+          expect(page).to have_content(I18n.t('api.key_updated', api_name: 'HelpscoutApiKey'))
         end
       end
 

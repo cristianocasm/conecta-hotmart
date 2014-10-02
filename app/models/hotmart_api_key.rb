@@ -1,0 +1,2 @@
+class HotmartApiKey < ApiKey
+end

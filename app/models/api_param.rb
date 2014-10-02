@@ -10,7 +10,7 @@ class ApiParam < ActiveRecord::Base
 
   has_many :accepted_values, dependent: :destroy
 
-  # relationship that allow me to find an api params' parents and children
+  # relationships that allow me to find an api params' parents and children
   has_many :nested_params
   has_many :child_params, :through => :nested_params
   has_many :parent_api_params, :class_name => "NestedParam", :foreign_key => "child_param_id"

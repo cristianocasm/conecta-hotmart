@@ -1,16 +1,16 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class=<%= "active" if active_tab('hotmart') %>>
-    <%= link_to t('api.hotmart'), edit_api_key_path(api: :hotmart) %>
+  <li class=<%= "active" if active_tab('HotmartApiKey') %>>
+    <%= link_to t('api.hotmart'), edit_hotmart_api_key_path(current_user.hotmart_api_key.first.id) %>
   </li>
-  <li class=<%= "active" if active_tab('mailchimp') %>>
-    <%= link_to t('api.mailchimp'), edit_api_key_path(api: :mailchimp) %>
+  <li class=<%= "active" if active_tab('MailchimpApiKey') %>>
+    <%= link_to t('api.mailchimp'), edit_mailchimp_api_key_path(current_user.mailchimp_api_key.first.id) %>
   </li>
-  <li class=<%= "active" if active_tab('helpscout') %>>
-    <%= link_to t('api.helpscout'), edit_api_key_path(api: :helpscout) %>
+  <li class=<%= "active" if active_tab('HelpscoutApiKey') %>>
+    <%= link_to t('api.helpscout'), edit_helpscout_api_key_path(current_user.helpscout_api_key.first.id) %>
   </li>
 </ul>
 
-<% if @api == 'hotmart' %>
-  <mark><%= notification_url(@user.token) %></mark>
+<% if request.path =~ /^\/hotmart_api_keys\// %>
+  <mark><%= notification_url(current_user.token) %></mark>
 <% end %>
-<%= render :partial => 'form', locals: { api: @api } %>
+<%= render :partial => 'form' %>

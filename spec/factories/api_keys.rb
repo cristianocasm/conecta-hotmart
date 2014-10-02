@@ -8,15 +8,15 @@ FactoryGirl.define do
     #end
 
     factory :hotmart_api_key do
-      association :api, factory: :hotmart_api
+      type 'HotmartApiKey'
     end
 
     factory :mailchimp_api_key do
-      association :api, factory: :mailchimp_api
+      type 'MailchimpApiKey'
     end
 
     factory :helpscout_api_key do
-      association :api, factory: :helpscout_api
+      type 'HelpscoutApiKey'
     end
   end
 end

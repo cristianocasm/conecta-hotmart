@@ -26,4 +26,4 @@ en:
     mailchimp: 'Mailchimp'
     helpscout: 'Helpscout'
     key: 'Key'
-    key_updated: "Your %{api_name}'s API Key was successfully updated"
+    key_updated: "Your %{api_name} was successfully updated"
