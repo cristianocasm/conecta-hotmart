@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :api_param do
     sequence(:name) { Faker::Lorem.word }
     sequence(:description) { Faker::Lorem.sentence }
+    association :data_type, factory: :string
 
     factory :mailchimp_param do
       type 'MailchimpParam'

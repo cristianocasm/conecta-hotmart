@@ -95,4 +95,4 @@ gem 'devise'
 # Helpers for fontawesome
 gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status
-  gem 'newrelic_rpm'
+gem 'newrelic_rpm'

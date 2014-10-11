@@ -69,7 +69,7 @@ class ApiParamsController < ApplicationController
   end
 
   def api_param_params
-    params.require(get_api_name.underscore.to_sym).permit(:name, :description, :required, :struct)
+    params.require(get_api_name.underscore.to_sym).permit(:name, :description, :data_type_id)
   end
 
 end

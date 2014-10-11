@@ -8,6 +8,8 @@
   <dd><%= @api_param.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @api_param.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:data_type) %>:</strong></dt>
+  <dd><%= @api_param.data_type.name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
