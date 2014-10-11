@@ -27,3 +27,7 @@ en:
     helpscout: 'Helpscout'
     key: 'Key'
     key_updated: "Your %{api_name} was successfully updated"
+
+    api_param:
+      accepted_values_link: "Accepted values"
+      delete_accepted_value_link: "Delete"

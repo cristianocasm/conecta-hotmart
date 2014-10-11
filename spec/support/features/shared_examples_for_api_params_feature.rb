@@ -13,19 +13,22 @@ RSpec.shared_examples 'ApiParams' do |api_name, api_param|
   
   feature "ApiParam create form" do
 
+    before(:each) { visit script_api_path(api_name, nil, :new) }
+
     scenario "User should be able to define the ApiParam name" do
-      visit script_api_path(api_name, nil, :new)
       expect(page).to have_field(api_name.underscore + '[name]')
     end
 
     scenario "User should be able to define the ApiParam description" do
-      visit script_api_path(api_name, nil, :new)
       expect(page).to have_field(api_name.underscore + '[description]')
     end
 
     scenario "User should be able to define the ApiParam data type" do
-      visit script_api_path(api_name, nil, :new)
       expect(page).to have_select(api_name.underscore + '[data_type_id]')
+    end
+
+    scenario "User should be able to define accepted values", focus: true do
+      expect(page).to have_link(I18n.t("api.api_param.accepted_values_link"))
     end
   end
 
