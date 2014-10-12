@@ -11,9 +11,16 @@ class ApiParamsController < ApplicationController
 
   def new
     @api_param = api_class.new
+    @api_param.accepted_values.build
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @api_param }
+    end
   end
 
   def edit
+    @api_param.accepted_values.build
   end
 
   def create

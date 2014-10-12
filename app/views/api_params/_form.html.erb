@@ -12,9 +12,9 @@
     <%= f.association :data_type, collection: DataType.all %>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= f.simple_fields_for :accepted_values do |accepted_values| %>
-          <%= render 'accepted_value_fields', f: accepted_values %>
-          <%= link_to_add_association I18n.t('api.api_param.accepted_values_link'), f, :accepted_values, html_options: {:class => 'btn btn-default'} %>
+        <%= f.simple_fields_for :accepted_values do |builder| %>
+          <%= render 'accepted_value_fields', f: builder unless request.params[:action] == 'new' %>
+          <%= link_to_add_fields I18n.t('api.api_param.accepted_values_link'), f, :accepted_values %>
         <% end %>
       </div>
     </div>

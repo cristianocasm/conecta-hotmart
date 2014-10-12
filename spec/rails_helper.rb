@@ -40,6 +40,15 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
   end
 
+  config.before(:suite) do
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
+  end
+
   config.before(:each) do
     DatabaseCleaner.start
   end
@@ -70,6 +79,7 @@ RSpec.configure do |config|
 
   # Speed up tests by running only those with 'focus' tag
   config.filter_run focus: true
+  config.filter_run_excluding slow: true
   config.run_all_when_everything_filtered = true
 
   # Speed up tests by controlling Ruby Garbage Collection. It

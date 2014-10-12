@@ -96,5 +96,3 @@ gem 'devise'
 gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status
 gem 'newrelic_rpm'
-# Used to create nested forms
-gem "cocoon"

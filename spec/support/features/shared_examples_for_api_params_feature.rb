@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.shared_examples 'ApiParams' do |api_name, api_param|
+RSpec.shared_examples 'ApiParams' do |api_name|
 
   let(:user) { FactoryGirl.create(:admin) }
   
@@ -27,8 +27,21 @@ RSpec.shared_examples 'ApiParams' do |api_name, api_param|
       expect(page).to have_select(api_name.underscore + '[data_type_id]')
     end
 
-    scenario "User should be able to define accepted values", focus: true do
+    scenario "User should see the add accepted values link" do
       expect(page).to have_link(I18n.t("api.api_param.accepted_values_link"))
+    end
+
+    scenario "User should be able to create api param with accepted values", :slow, js: true do
+      param = FactoryGirl.create(:api_param)
+      param.accepted_values << [FactoryGirl.create(:accepted_value)]
+      api_name.constantize.stub(:find).and_return(param)
+
+      fill_in "#{api_name.underscore}[name]", with: param.name
+      fill_in "#{api_name.underscore}[description]", with: param.description
+      click_link I18n.t("api.api_param.accepted_values_link")
+      fill_in 'Value', with: param.accepted_values.first.value
+      click_button 'Update'
+      expect(page).to have_content(param.accepted_values.first.value)
     end
   end
 

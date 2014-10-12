@@ -10,6 +10,14 @@
   <dd><%= @api_param.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:data_type) %>:</strong></dt>
   <dd><%= @api_param.data_type.name %></dd>
+  <% unless @api_param.accepted_values.blank? %>
+    <dt><strong><%= model_class.human_attribute_name(:accepted_values) %>:</strong></dt>
+    <dd></dd>
+  <% end %>
+  <% @api_param.accepted_values.each do |accepted_value| %>
+    <dt><strong><%= model_class.new.accepted_values.human_attribute_name(:value) %>:</strong></dt>
+    <dd><%= accepted_value.value %></dd>
+  <% end %>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
