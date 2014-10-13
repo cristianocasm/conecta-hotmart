@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   # that these methods are defined inside the 'api_key.rb' model so that
   # it can execute the query.
   delegate :helpscout_api_key, :hotmart_api_key, :mailchimp_api_key, to: :api_keys
-
-  has_many :api_keys
-  accepts_nested_attributes_for :api_keys
   
-  has_many :notifications
   belongs_to :user_type
+  has_many :notifications, dependent: :destroy
+  has_many :activation_rules, dependent: :destroy
+  has_many :api_keys, dependent: :destroy
+  accepts_nested_attributes_for :api_keys
 
   before_create :generate_url_token,
                 :set_as_non_admin

@@ -9,7 +9,7 @@
   <div class="col-sm-5">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :data_type, collection: DataType.all %>
+    <%= f.association :data_type, collection: DataType.all, selected: 1 %>
     <div class="panel panel-default">
       <div class="panel-body">
         <%= f.simple_fields_for :accepted_values do |builder| %>

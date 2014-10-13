@@ -1,6 +1,6 @@
 class ApiParam < ActiveRecord::Base
 
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :data_type_id
   validates_uniqueness_of :name, scope: [:type]
 
   # scopes for inherited models

@@ -10,6 +10,7 @@ RSpec.describe User, :type => :model do
   it { should belong_to :user_type }
   it { should have_many :api_keys }
   it { should have_many :notifications }
+  it { should have_many :activation_rules }
 
   describe "before create" do
 
