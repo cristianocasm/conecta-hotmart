@@ -144,127 +144,78 @@ HotmartParam.create!([
 HotmartParam.
   find_by_name('address_state').
     accepted_values.create!([
-              { name: 'AC',
-                description: 'Acre' },
-              { name: 'AL',
-                description: 'Alagoas' },
-              { name: 'AP',
-                description: 'Amapá' },
-              { name: 'AM',
-                description: 'Amazonas' },
-              { name: 'BA',
-                description: 'Bahia' },
-              { name: 'CE',
-                description: 'Ceará' },
-              { name: 'DF',
-                description: 'Distrito Federal' },
-              { name: 'ES',
-                description: 'Espírito Santo' },
-              { name: 'GO',
-                description: 'Goiás' },
-              { name: 'MA',
-                description: 'Maranhão' },
-              { name: 'MT',
-                description: 'Mato Grosso' },
-              { name: 'MS',
-                description: 'Mato Grosso do Sul' },
-              { name: 'MG',
-                description: 'Minas Gerais' },
-              { name: 'PA',
-                description: 'Pará' },
-              { name: 'PB',
-                description: 'Paraíba' },
-              { name: 'PR',
-                description: 'Paraná' },
-              { name: 'PE',
-                description: 'Pernambuco' },
-              { name: 'PI',
-                description: 'Piauí' },
-              { name: 'RJ',
-                description: 'Rio de Janeiro' },
-              { name: 'RN',
-                description: 'Rio Grande do Norte' },
-              { name: 'RS',
-                description: 'Rio Grande do Sul' },
-              { name: 'RO',
-                description: 'Rondônia' },
-              { name: 'RR',
-                description: 'Roraima' },
-              { name: 'SC',
-                description: 'Santa Catarina' },
-              { name: 'SP',
-                description: 'São Paulo' },
-              { name: 'SE',
-                description: 'Sergipe' },
-              { name: 'TO',
-                description: 'Tocantins' }
+              { value: 'AC' },
+              { value: 'AL' },
+              { value: 'AP' },
+              { value: 'AM' },
+              { value: 'BA' },
+              { value: 'CE' },
+              { value: 'DF' },
+              { value: 'ES' },
+              { value: 'GO' },
+              { value: 'MA' },
+              { value: 'MT' },
+              { value: 'MS' },
+              { value: 'MG' },
+              { value: 'PA' },
+              { value: 'PB' },
+              { value: 'PR' },
+              { value: 'PE' },
+              { value: 'PI' },
+              { value: 'RJ' },
+              { value: 'RN' },
+              { value: 'RS' },
+              { value: 'RO' },
+              { value: 'RR' },
+              { value: 'SC' },
+              { value: 'SP' },
+              { value: 'SE' },
+              { value: 'TO' }
       ])
 
 HotmartParam.
   find_by_name('status').
     accepted_values.create!([
-              { name: 'started',
-                description: 'started' },
-              { name: 'approved',
-                description: 'approved' },
-              { name: 'canceled',
-                description: 'canceled'},
-              { name: 'pending_analysis',
-                description: 'pending_analysis'},
-              { name: 'billet_printed',
-                description: 'billet_printed'},
-              { name: 'refunded',
-                description: 'refunded'},
-              { name: 'completed',
-                description: 'completed'},
-              { name: 'blocked',
-                description: 'blocked'},
-              { name: 'chargeback',
-                description: 'chargeback'}
+              { value: 'started' },
+              { value: 'approved' },
+              { value: 'canceled' },
+              { value: 'pending_analysis' },
+              { value: 'billet_printed' },
+              { value: 'refunded' },
+              { value: 'completed' },
+              { value: 'blocked' },
+              { value: 'chargeback' }
               ])
 
 HotmartParam.
   find_by_name('payment_engine').
     accepted_values.create!([
-              { name: 'moip',
-                description: 'moip' },
-              { name: 'paypal',
-                description: 'paypal' }
+              { value: 'moip' },
+              { value: 'paypal' }
               ])
 
 HotmartParam.
   find_by_name('payment_type').
     accepted_values.create!([
-              { name: 'credit_card',
-                description: 'credit_card' },
-              { name: 'billet',
-                description: 'billet' },
-              { name: 'bank_transfer',
-                description: 'bank_transfer' },
-              { name: 'bcash_balance',
-                description: 'bcash_balance' },
-              { name: 'paypal',
-                description: 'paypal' }
+              { value: 'credit_card' },
+              { value: 'billet' },
+              { value: 'bank_transfer' },
+              { value: 'bcash_balance' },
+              { value: 'paypal' }
               ])
 
 HotmartParam.
   find_by_name('callback_type').
     accepted_values.create!([
-              { name: '1',
-                description: '1-compra pagamento unico' },
-              { name: '2',
-                description: '2 - cancelamento assinatura' }
+              { value: '1' },
+              { value: '2' }
               ])
 
 HotmartParam.
   find_by_name('subscription_status').
     accepted_values.create!([
-              { name: 'active',
-                description: 'active' },
-              { name: 'canceled',
-                description: 'canceled' },
-              { name: 'past_due',
-                description: 'past_due' },
-              { name: 'expired',
-                description: 'expired' }
+              { value: 'active' },
+              { value: 'canceled' },
+              { value: 'past_due' },
+              { value: 'expired' }
               ])
