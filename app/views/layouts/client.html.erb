@@ -46,11 +46,11 @@
       <div class="row">
         <div class="col-sm-3">
           <ul class='nav nav-sidebar'>
-            <li class='active'>
+            <li class=<%= 'active' if is_active?('api_keys') %>>
               <%= link_to t('api.integration'), edit_hotmart_api_key_path(current_user.hotmart_api_key.first.id) %>
             </li>
-            <li>
-              <a class='side_bar_link' href='#'>Preview</a>
+            <li class=<%= 'active' if is_active?('activation_rules') %>>
+              <%= link_to t('api.rule.rules'), activation_rules_path %>
             </li>
           </ul>
         </div>

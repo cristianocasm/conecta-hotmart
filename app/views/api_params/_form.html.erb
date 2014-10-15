@@ -10,6 +10,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.association :data_type, collection: DataType.all, selected: 1 %>
+    <%= f.input :show_in_activation_rule if params[:type] == 'HotmartParam' %>
     <div class="panel panel-default">
       <div class="panel-body">
         <%= f.simple_fields_for :accepted_values do |builder| %>

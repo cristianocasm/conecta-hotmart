@@ -9,7 +9,7 @@ class ApiParam < ActiveRecord::Base
   scope :mailchimp_params, -> { where(type: 'MailchimpParam') }
 
   has_many :accepted_values, dependent: :destroy
-  accepts_nested_attributes_for :accepted_values, :allow_destroy => true
+  accepts_nested_attributes_for :accepted_values, reject_if: :all_blank, :allow_destroy => true
 
   belongs_to :data_type
 

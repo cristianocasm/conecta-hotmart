@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :hotmart_api_keys, controller: 'api_keys', type: 'HotmartApiKey', only: [:edit, :update]
   resources :mailchimp_api_keys, controller: 'api_keys', type: 'MailchimpApiKey', only: [:edit, :update]
 
+  resources :activation_rules
+
   resources :notifications, only: [:index, :show]
   post "/notifications/:token", to: 'notifications#create'
 

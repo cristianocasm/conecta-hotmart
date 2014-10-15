@@ -31,3 +31,6 @@ en:
     api_param:
       accepted_values_link: "Accepted values"
       delete_accepted_value_link: "Delete"
+
+    rule:
+      rules: 'Rules'
