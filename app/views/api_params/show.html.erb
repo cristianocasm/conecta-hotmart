@@ -10,6 +10,10 @@
   <dd><%= @api_param.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:data_type) %>:</strong></dt>
   <dd><%= @api_param.data_type.name %></dd>
+  <% if params[:type] == 'HotmartParam' %>
+    <dt><strong><%= model_class.human_attribute_name(:show_in_activation_rule) %>:</strong></dt>
+    <dd><%= @api_param.show_in_activation_rule %></dd>
+  <% end %>
   <% unless @api_param.accepted_values.blank? %>
     <dt><strong><%= model_class.human_attribute_name(:accepted_values) %>:</strong></dt>
     <dd></dd>

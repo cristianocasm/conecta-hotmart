@@ -82,6 +82,7 @@ class ApiParamsController < ApplicationController
         :name,
         :description,
         :data_type_id,
+        :show_in_activation_rule,
         :accepted_values_attributes => [
           :id,
           :value,

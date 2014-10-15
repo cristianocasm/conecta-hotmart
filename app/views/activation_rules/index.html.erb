@@ -1,28 +1,29 @@
-<%- model_class = @api_name.constantize -%>
+<%- model_class = @activation_rule_name.constantize -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
 <div class="table-responsive">
   <table class="table table-striped" id='data_table'>
     <thead>
       <tr>
-        <th class="col-sm-1"><%= model_class.human_attribute_name(:name) %></th>
-        <th class="col-sm-5"><%= model_class.human_attribute_name(:description) %></th>
+        <th>Name</th>
+        <th>Description</th>
         <th class="col-sm-2"><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
+
     <tbody>
-      <% @api_params.each do |api_param| %>
+      <% @activation_rules.each do |rule| %>
         <tr>
-          <td><%= api_param.name %></td>
-          <td><%= api_param.description %></td>
+          <td><%= rule.name %></td>
+          <td><%= rule.description %></td>
           <td>
             <%= link_to t('.show', default: t("helpers.links.show")),
-                        script_api_path(@api_name, api_param), class: 'btn btn-success btn-xs' %>
+                        rule, class: 'btn btn-success btn-xs'  %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        script_api_path(@api_name, api_param, :edit), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        script_api_path(@api_name, api_param),
+                        edit_activation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")), rule,
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-xs btn-danger' %>
@@ -31,8 +32,10 @@
       <% end %>
     </tbody>
   </table>
-</div>
+</div
+
+<br>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            script_api_path(@api_name, nil, :new),
+            new_activation_rule_path,
             :class => 'btn btn-primary' %>
