@@ -1,4 +1,5 @@
-== SCRIPT DE INTEGRAÇÃO HOTMART, MAILCHIMP E HELPSCOUT
+SCRIPT DE INTEGRAÇÃO HOTMART, MAILCHIMP E HELPSCOUT
+===================================================
 
 Este é o script para integração entre o Hotmart, MailChimp e HelpScout.
 
