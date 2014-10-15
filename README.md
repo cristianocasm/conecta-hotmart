@@ -4,7 +4,7 @@ SCRIPT DE INTEGRAÇÃO HOTMART, MAILCHIMP E HELPSCOUT
 Este é o script para integração entre o Hotmart, MailChimp e HelpScout.
 
 * Ruby
-  * 2.1.2
+    * 2.1.2
 * Rails
   * 4.1.4
 * Testes
