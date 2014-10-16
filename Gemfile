@@ -96,3 +96,5 @@ gem 'devise'
 gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status
 gem 'newrelic_rpm'
+# Mailchimp gem
+gem 'mailchimp-api', '~> 2.0.5'

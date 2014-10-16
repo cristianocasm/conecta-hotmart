@@ -4,4 +4,8 @@ class Argument < ActiveRecord::Base
 
   has_many :actuation_params
   has_many :actuation_rules, through: :actuation_params
+
+  def method_missing(sym, *args, &block)
+    
+  end
 end

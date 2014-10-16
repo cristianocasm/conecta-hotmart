@@ -20,6 +20,17 @@ class User < ActiveRecord::Base
                 :set_as_non_admin
   after_create :generate_api_keys
 
+  scope :find_by_token_and_hottok,
+            lambda { |token_script, token_hotmart|
+              joins(:api_keys).
+              where(
+                "users.token = ? AND api_keys.key = ? AND api_keys.type = ?",
+                  token_script,
+                  token_hotmart,
+                  'HotmartApiKey'
+                )
+            }
+
   def admin?
     true if self.user_type.name == 'admin'
   end
@@ -46,9 +57,12 @@ class User < ActiveRecord::Base
   def random_string
     begin
       token = SecureRandom.urlsafe_base64
-      user = User.find_by_token(token)
-      return token if user.nil?
+      return token unless already_registered?(token)
     end
+  end
+
+  def already_registered?(token)
+    User.find_by_token(token)
   end
 
 end
