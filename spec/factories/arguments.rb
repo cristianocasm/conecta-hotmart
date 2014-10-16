@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: arguments
+#
+#  id           :integer          not null, primary key
+#  api_param_id :integer
+#  method_id    :integer
+#  position     :integer
+#  required     :boolean
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

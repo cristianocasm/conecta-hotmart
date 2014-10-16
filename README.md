@@ -21,12 +21,10 @@ Este é o script para integração entre o Hotmart, MailChimp e HelpScout.
 * Gerando diagramas de classes UML
     * rake diagram:all
         * Gera arquivos svg em /doc/
+* Gerando Annotations (http://bit.ly/1ucrhLr)
+    * annotate
 * Configuration
 * Database creation
 * Services (job queues, cache servers, search engines, etc.)
 * Deployment instructions
 * ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

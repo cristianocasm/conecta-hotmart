@@ -1,0 +1,42 @@
+<%- model_class = @actuation_rule_name.constantize -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped" id='data_table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @actuation_rules.each do |rule| %>
+        <tr>
+          <td><%= actuation_rule.name %></td>
+          <td><%= actuation_rule.description %></td>
+          <td>
+            <%= link_to t('.show', default: t("helpers.links.show")),
+                        rule, class: 'btn btn-success btn-xs'  %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_actuation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")), rule,
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_actuation_rule_path,
+            :class => 'btn btn-primary' %>

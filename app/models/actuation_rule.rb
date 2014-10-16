@@ -1,4 +1,20 @@
+# == Schema Information
+#
+# Table name: actuation_rules
+#
+#  id                 :integer          not null, primary key
+#  activation_rule_id :integer
+#  method_id          :integer
+#  name               :string(255)
+#  description        :text(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class ActuationRule < ActiveRecord::Base
+  validates_presence_of :name, :description
+  validates_uniqueness_of :name
+
   belongs_to :activation_rule
   belongs_to :method
 

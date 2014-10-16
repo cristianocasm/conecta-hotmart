@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: activation_params
+#
+#  id                 :integer          not null, primary key
+#  api_param_id       :integer
+#  activation_rule_id :integer
+#  value              :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe ActivationParam, :type => :model do

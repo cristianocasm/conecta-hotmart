@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: api_params
+#
+#  id                      :integer          not null, primary key
+#  name                    :string(255)
+#  description             :text(255)
+#  type                    :string(255)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  data_type_id            :integer
+#  show_in_activation_rule :boolean          default(FALSE)
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

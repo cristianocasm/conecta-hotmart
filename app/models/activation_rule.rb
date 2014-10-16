@@ -1,5 +1,18 @@
+# == Schema Information
+#
+# Table name: activation_rules
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  name        :string(255)
+#  description :text(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class ActivationRule < ActiveRecord::Base
   validates_presence_of :name, :description
+  validates_uniqueness_of :name
   
   belongs_to :user
   has_many :notifications
