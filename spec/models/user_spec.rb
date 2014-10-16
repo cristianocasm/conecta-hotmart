@@ -45,30 +45,51 @@ RSpec.describe User, :type => :model do
 
   describe "api key fetching" do
 
-    let(:hotmart_api_key) { FactoryGirl.build(:hotmart_api_key) }
-    let(:mailchimp_api_key) { FactoryGirl.build(:mailchimp_api_key) }
-    let(:helpscout_api_key) { FactoryGirl.build(:helpscout_api_key) }
+    let(:hotmart_api_key) { FactoryGirl.attributes_for(:hotmart_api_key) }
+    let(:mailchimp_api_key) { FactoryGirl.attributes_for(:mailchimp_api_key) }
+    let(:helpscout_api_key) { FactoryGirl.attributes_for(:helpscout_api_key) }
     
-    let(:user) { FactoryGirl.create(:client) do |client|
-                   client.api_keys << [ hotmart_api_key,
-                                        mailchimp_api_key,
-                                        helpscout_api_key ]
-                  end 
-                }
+    let(:user) { FactoryGirl.create(:client) }
     
-    xit "should return user's hotmart api key" do
+    it "should return user's hotmart api key" do
+      user.hotmart_api_key.first.update_attribute(:key, hotmart_api_key[:key])
       key = user.hotmart_api_key.first.key
-      expect(key).to eq hotmart_api_key.key
+      expect(key).to eq hotmart_api_key[:key]
     end
 
-    xit "should return user's mailchimp api key" do
+    it "should return user's mailchimp api key" do
+      user.mailchimp_api_key.first.update_attribute(:key, mailchimp_api_key[:key])
       key = user.mailchimp_api_key.first.key
       expect(key).to eq mailchimp_api_key[:key]
     end
 
-    xit "should return user's helpscout api key" do
+    it "should return user's helpscout api key" do
+      user.helpscout_api_key.first.update_attribute(:key, helpscout_api_key[:key])
       key = user.helpscout_api_key.first.key
       expect(key).to eq helpscout_api_key[:key]
     end
   end
+
+  describe "User class and instance methods" do
+
+    let(:hotmart_api_key) { FactoryGirl.attributes_for(:hotmart_api_key) }
+    let(:client) { FactoryGirl.create(:client) }
+    let(:admin) { FactoryGirl.create(:admin) }
+    
+    it "should find a user by token and hottok" do
+      client.hotmart_api_key.first.update_attribute(:key, hotmart_api_key[:key])
+      client_found = User.find_by_token_and_hottok(client.token, client.hotmart_api_key.first.key).first
+      expect(client).to eq client_found
+    end
+
+    it "should check whether user is admin or not - testing a client" do
+      expect(client.admin?).to eq false
+    end
+
+    it "should check whether user is admin or not - testing an admin" do
+      expect(admin.admin?).to eq true
+    end
+
+  end
+
 end

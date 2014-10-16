@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
             }
 
   def admin?
-    true if self.user_type.name == 'admin'
+    self.user_type.name == 'admin' ? true : false
   end
 
   private

@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :activation_rule do
     user_id 1
-    name "MyString"
-    description "MyString"
+    name "Activation Rule"
+    description "An Activation Rule"
   end
 end

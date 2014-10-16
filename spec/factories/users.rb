@@ -5,6 +5,7 @@ FactoryGirl.define do
     name Faker::Name.name 
     sequence(:email) { Faker::Internet.email }
     password Faker::Internet.password
+    token Faker::Lorem.characters(32)
 
     factory :admin do
       association :user_type, factory: :admin_type
