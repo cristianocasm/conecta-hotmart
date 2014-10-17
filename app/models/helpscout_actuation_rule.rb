@@ -1,0 +1,2 @@
+class HelpscoutActuationRule < ActuationRule
+end

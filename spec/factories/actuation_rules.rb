@@ -15,9 +15,15 @@
 
 FactoryGirl.define do
   factory :actuation_rule do
-    activation_rule_id 1
-    method_id 1
-    name "MyString"
-    description "MyString"
+    sequence(:name) { Faker::Lorem.word }
+    sequence(:description) { Faker::Lorem.sentence }
+    
+    factory :mailchimp_rule do
+      type 'MailchimpActuationRule'
+    end
+
+    factory :helpscout_rule do
+      type 'HelpscoutActuationRule'
+    end
   end
 end

@@ -8,7 +8,17 @@
 =end
 
 if Rails.env.development?
-  %w[api_param mailchimp_param hotmart_param helpscout_param api_key mailchimp_api_key hotmart_api_key helpscout_api_key].each do |c|
+  %w[api_param
+    mailchimp_param
+    hotmart_param
+    helpscout_param
+    api_key
+    mailchimp_api_key
+    hotmart_api_key
+    helpscout_api_key
+    actuation_rule
+    mailchimp_actuation_rule
+    helpscout_actuation_rule].each do |c|
     require_dependency File.join("app","models","#{c}.rb")
   end
 end

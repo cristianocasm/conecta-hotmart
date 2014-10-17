@@ -20,7 +20,11 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def is_active?(controller)
-    "active" if params[:controller] == controller
-   end
+  def is_active?(controller, type=nil)
+    if type
+      "active" if params[:controller] == controller && params[:type] == type
+    else
+      "active" if params[:controller] == controller
+    end
+  end
 end

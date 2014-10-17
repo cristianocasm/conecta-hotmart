@@ -1,0 +1,2 @@
+class MailchimpActuationRule < ActuationRule
+end

@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   resources :mailchimp_api_keys, controller: 'api_keys', type: 'MailchimpApiKey', only: [:edit, :update]
 
   resources :activation_rules
-  resources :actuation_rules
+
+  # Routes for STI actuation_rule
+  resources :mailchimp_actuation_rules, controller: 'actuation_rules', type: 'MailchimpActuationRule'
+  resources :helpscout_actuation_rules, controller: 'actuation_rules', type: 'HelpscoutActuationRule'
 
   resources :notifications, only: [:index, :show]
   post "/notifications/:token", to: 'notifications#create'

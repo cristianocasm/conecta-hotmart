@@ -34,3 +34,5 @@ en:
 
     rule:
       rules: 'Rules'
+      mailchimp_actuation_rules: 'Mailchimp Actuation Rules'
+      helpscout_actuation_rules: 'Helpscout Actuation Rules'
