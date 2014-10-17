@@ -1,0 +1,9 @@
+<div class="row form-group">
+  <div class="col-md-5">
+    <%= f.label f.object.api_param.name %>
+    <%= f.input_field :api_param_id, as: :hidden, value: f.object.api_param.id %>
+  </div>
+  <div class="col-md-7">
+    <%= f.input_field :value, create_options(f.object.api_param) %>
+  </div>
+</div>

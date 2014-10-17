@@ -9,6 +9,7 @@
 #  description        :text(255)
 #  created_at         :datetime
 #  updated_at         :datetime
+#  type               :string(255)
 #
 
 class ActuationRule < ActiveRecord::Base
@@ -20,6 +21,7 @@ class ActuationRule < ActiveRecord::Base
 
   has_many :actuation_params
   has_many :arguments, through: :actuation_params
+  accepts_nested_attributes_for :actuation_params, :reject_if => lambda { |c| c[:value].blank? }
 
   def run(user, params)
     mailchimp = Mailchimp::API.new(user.mailchimp_api_key)

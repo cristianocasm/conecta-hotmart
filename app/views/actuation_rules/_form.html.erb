@@ -9,6 +9,10 @@
   <div class="col-sm-5">
     <%= f.input :name %>
     <%= f.input :description %>
+
+    <%= f.simple_fields_for :actuation_params, @actuation_rule.actuation_params do |builder| %>
+      <%= render 'actuation_param_fields', f: builder %>
+    <% end %>
     
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
