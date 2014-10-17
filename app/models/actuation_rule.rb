@@ -32,14 +32,14 @@ class ActuationRule < ActiveRecord::Base
         arguments = self.arguments
 
         # mailchimp.lists.subscribe(
-        #   arguments.argument_1(params),                   # id da lista
-        #   email: { email: arguments.argument_2(params) }, # o e-mail a ser cadastrado (extraído de params)
-        #   merge_vars: arguments.argument_3(params),   # o nome dos grupos
-        #   arguments.argument_4(params),                   # o tipo de email (text ou html)
-        #   arguments.argument_5(params),                   # utilizar ou não double opt-in
-        #   arguments.argument_6(params),                   # permitir atualização de informações de usuário que já esteja cadastrado na lista
-        #   arguments.argument_7(params),                   # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais
-        #   arguments.argument_8(params)                    # envia email de boas vindas
+        #   arguments.argument_1(params),                   # id da lista (*list_id)
+        #   email: { email: arguments.argument_2(params) }, # o e-mail a ser cadastrado (extraído de params) (*email)
+        #   merge_vars: arguments.argument_3(params),       # o nome dos grupos (*group_name)
+        #   arguments.argument_4(params),                   # o tipo de email (text ou html) (*email_type)
+        #   arguments.argument_5(params),                   # utilizar ou não double opt-in (*double_optin)
+        #   arguments.argument_6(params),                   # permitir atualização de informações de usuário que já esteja cadastrado na lista (*update_existing)
+        #   arguments.argument_7(params),                   # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
+        #   arguments.argument_8(params)                    # envia email de boas vindas (*send_welcome)
         #   # string id,              # The list id
         #   # struct email,           # Struct, mas terá apenas email
         #   # struct merge_vars,      # OPT - Struct - atente-se para groupings (o qual possui groups - array)

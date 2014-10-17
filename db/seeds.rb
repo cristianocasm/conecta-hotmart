@@ -30,6 +30,9 @@ DataType.create!([
   ])
 
 string_id = DataType.find_by_name('string').id
+boolean_id = DataType.find_by_name('boolean').id
+
+puts "Iniciando criação dos parâmetros Hotmart"
 
 HotmartParam.create!([
               { name: 'hottok',
@@ -268,3 +271,39 @@ HotmartParam.
               { value: 'past_due' },
               { value: 'expired' }
               ])
+
+puts "Iniciando criação dos parâmetros Mailchimp"
+
+MailchimpParam.create!([
+  { name: 'list_id',
+    description: 'The list id where a user will be subscribed/unsubscribed to/from',
+    data_type_id: string_id },
+  { name: 'email',
+    description: 'The email address to be subscribed/unsubscribed to/from a list.',
+    data_type_id: string_id },
+  { name: 'group_name',
+    description: 'The group name to classify a user',
+    data_type_id: string_id },
+  { name: 'email_type',
+    description: 'Optional email type preference for the email (html or text - defaults to html)',
+    data_type_id: string_id },
+  { name: 'double_optin',
+    description: 'Optional flag to control whether a double opt-in confirmation message is sent, defaults to true. Abusing this may cause your Mailchimp account to be suspended.',
+    data_type_id: boolean_id },
+  { name: 'update_existing',
+    description: 'Optional flag to control whether existing subscribers should be updated instead of throwing an error, defaults to false.',
+    data_type_id: boolean_id },
+  { name: 'replace_interests',
+    description: "Optional flag to determine whether we replace the interest groups with the groups provided or we add the provided groups to the member's interest groups (optional, defaults to true)",
+    data_type_id: boolean_id },
+  { name: 'send_welcome',
+    description: "Optional if your double_optin is false and this is true, we will send your lists Welcome Email if this subscribe succeeds - this will *not* fire if we end up updating an existing subs-criber. If double_optin is true, this has no effect. defaults to false.",
+    data_type_id: boolean_id }
+  ])
+
+MailchimpParam.
+  find_by_name('email_type').
+  accepted_values.create!([
+    { value: 'html' },
+    { value: 'text' }
+    ])
