@@ -1,0 +1,2 @@
+class MailchimpApiMethod < ApiMethod
+end

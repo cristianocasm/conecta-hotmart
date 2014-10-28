@@ -17,7 +17,7 @@ class ActuationRule < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:type]
 
   belongs_to :activation_rule
-  belongs_to :method
+  belongs_to :api_method
 
   has_many :actuation_params
   has_many :arguments, through: :actuation_params

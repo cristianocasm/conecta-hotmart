@@ -25,6 +25,9 @@ class ApiParam < ActiveRecord::Base
   has_many :accepted_values, dependent: :destroy
   accepts_nested_attributes_for :accepted_values, reject_if: :all_blank, :allow_destroy => true
 
+  has_many :actuation_params
+  has_many :arguments
+
   belongs_to :data_type
 
   # #relationships that allow me to find an api params' parents and children

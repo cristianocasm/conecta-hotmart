@@ -20,4 +20,5 @@ en:
       edit: "Edit %{model}"
       save: "Save %{model}"
       new: "New %{model}"
+      actuation_new: "New %{model} - %{method}"
       delete: "Delete %{model}"

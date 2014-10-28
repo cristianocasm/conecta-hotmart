@@ -298,6 +298,15 @@ MailchimpParam.create!([
     data_type_id: boolean_id },
   { name: 'send_welcome',
     description: "Optional if your double_optin is false and this is true, we will send your lists Welcome Email if this subscribe succeeds - this will *not* fire if we end up updating an existing subs-criber. If double_optin is true, this has no effect. defaults to false.",
+    data_type_id: boolean_id },
+  { name: 'delete_member',
+    description: "Optional flag to completely delete the member from your list instead of just unsubscribing, default to false",
+    data_type_id: boolean_id },
+  { name: 'send_goodbye',
+    description: "Optional flag to send the goodbye email to the email address, defaults to true",
+    data_type_id: boolean_id },
+  { name: 'send_notify',
+    description: "Optional flag to send the unsubscribe notification email to the address defined in the list email notification settings, defaults to true",
     data_type_id: boolean_id }
   ])
 
@@ -306,4 +315,84 @@ MailchimpParam.
   accepted_values.create!([
     { value: 'html' },
     { value: 'text' }
+    ])
+
+puts "Iniciando o cadastro dos métodos das APIs Mailchimp e Helpscout"
+MailchimpApiMethod.create!([
+    { name: 'subscribe',
+      description: 'Subscribe the provided email to a list. By default this sends a confirmation email - you will not see new members until the link contained in it is clicked!' },
+    { name: 'update-member', 
+      description: 'Edit the email address, merge fields, and interest groups for a list member' },
+    { name: 'unsubscribe',
+      description: 'Unsubscribe the given email address from the list' }
+  ])
+
+puts "Cadastrando os argumentos dos métodos das APIs"
+MailchimpApiMethod.
+  find_by_name('unsubscribe').
+  arguments.create!([
+    { api_param_id: MailchimpParam.find_by_name('list_id').id,
+      position: 1,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('email').id,
+      position: 2,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('delete_member').id,
+      position: 3,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('send_goodbye').id,
+      position: 4,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('send_notify').id,
+      position: 5,
+      required: false }
+    ])
+    
+MailchimpApiMethod.
+  find_by_name('subscribe').
+  arguments.create!([
+    { api_param_id: MailchimpParam.find_by_name('list_id').id,
+      position: 1,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('email').id,
+      position: 2,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('group_name').id,
+      position: 3,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('email_type').id,
+      position: 4,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('double_optin').id,
+      position: 5,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('update_existing').id,
+      position: 6,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('replace_interests').id,
+      position: 7,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('send_welcome').id,
+      position: 8,
+      required: false }
+    ])
+
+MailchimpApiMethod.
+  find_by_name('update-member').
+  arguments.create!([
+    { api_param_id: MailchimpParam.find_by_name('list_id').id,
+      position: 1,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('email').id,
+      position: 2,
+      required: true },
+    { api_param_id: MailchimpParam.find_by_name('group_name').id,
+      position: 3,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('email_type').id,
+      position: 4,
+      required: false },
+    { api_param_id: MailchimpParam.find_by_name('replace_interests').id,
+      position: 7,
+      required: false }
     ])

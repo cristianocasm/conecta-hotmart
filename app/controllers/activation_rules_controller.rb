@@ -18,7 +18,6 @@ class ActivationRulesController < ApplicationController
   def new
     @activation_rule = ActivationRule.new
     @activation_rule.api_params = HotmartParam.allowed_in_activation_rule
-    @activation_rule.actuation_rules.build
   end
 
   # GET /rules/1/edit

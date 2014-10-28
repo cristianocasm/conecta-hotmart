@@ -1,6 +1,13 @@
 <%- model_class = @actuation_rule_name.constantize -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
+<% if params[:method].blank? %>
+  <% @api_methods.each do |method| %>
+  <%= link_to method[1], script_api_path(@actuation_rule_name, {method: method[1]}, :new),
+            :class => 'btn btn-primary' %>
+  <% end %>
+<% else %>
+  <div class="page-header">
+    <h1><%=t '.title', :default => [:'helpers.titles.actuation_new', "%{model} %{method} "], :model => model_class.model_name.human.titleize, :method => params[:method].titleize %></h1>
+  </div>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+<% end %>

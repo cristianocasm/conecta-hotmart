@@ -17,6 +17,13 @@ class ActuationRulesController < ApplicationController
   # GET /actuation_rules/new
   def new
     @actuation_rule = actuation_class.new
+    if params[:method].blank?
+      @api_methods = actuation_model_class.pluck(:id, :name)
+    else
+      @actuation_rule.arguments = actuation_model_class.
+                                    find_by_name(params[:method]).
+                                    arguments if params[:method]
+    end
   end
 
   # GET /actuation_rules/1/edit
@@ -79,6 +86,16 @@ class ActuationRulesController < ApplicationController
     end
 
     descendants.include?(params[:type]) ? params[:type] : 'MailchimpActuationRule'
+  end
+
+  # Gets the model class properly
+  def actuation_model_class
+    case params[:type]
+    when 'MailchimpActuationRule'
+      MailchimpApiMethod
+    when 'HelpscoutActuationRule'
+      HelpscoutApiMethod
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
