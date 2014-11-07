@@ -8,7 +8,7 @@ RSpec.shared_examples 'ApisIntegration' do
     end
 
     scenario "User should be able to get his 'Notification URL Token'" do
-      expect(page).to have_content(user.token)
+      expect(page).to have_content(user.hotmart_token)
     end
 
     scenario "User should be able to access hotmart api" do
@@ -59,6 +59,11 @@ RSpec.shared_examples 'ApisIntegration' do
           fill_in I18n.t('api.key'), with: key
           click_button 'Update'
           expect(page).to have_content(I18n.t('api.key_updated', api_name: 'HelpscoutApiKey'))
+        end
+
+        scenario "User should be able to get his 'Helpscout URL Notification'" do
+          click_link I18n.t('api.helpscout')
+          expect(page).to have_content(user.helpscout_token)
         end
       end
 

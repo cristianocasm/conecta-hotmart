@@ -29,7 +29,8 @@ RSpec.describe User, :type => :model do
   it { should respond_to :name }
   it { should respond_to :email }
   it { should respond_to :password }
-  it { should respond_to :token }
+  it { should respond_to :hotmart_token }
+  it { should respond_to :helpscout_token}
   it { should respond_to :hotmart_login }
   it { should respond_to :hotmart_access_token }
   it { should belong_to :user_type }
@@ -40,16 +41,16 @@ RSpec.describe User, :type => :model do
   describe "before create" do
 
     it "should call #generate_url_token" do
-      allow_any_instance_of(User).to receive(:generate_url_token)
+      allow_any_instance_of(User).to receive(:generate_url_tokens)
       user = FactoryGirl.create(:client)
-      expect(user).to have_received(:generate_url_token)
+      expect(user).to have_received(:generate_url_tokens)
     end
 
     it "should generate notification url" do
       hash = Faker::Lorem.characters(16)
       allow_any_instance_of(User).to receive(:random_string).and_return(hash)
       user = FactoryGirl.create(:client)
-      expect(user.token).to eq hash
+      expect(user.hotmart_token).to eq hash
     end
 
     it "should generate empty Hotmart Api Key" do
@@ -103,7 +104,7 @@ RSpec.describe User, :type => :model do
     
     it "should find a user by token and hottok" do
       client.hotmart_api_key.first.update_attribute(:key, hotmart_api_key[:key])
-      client_found = User.find_by_token_and_hottok(client.token, client.hotmart_api_key.first.key).first
+      client_found = User.find_by_hotmart_token_and_hottok(client.hotmart_token, client.hotmart_api_key.first.key).first
       expect(client).to eq client_found
     end
 

@@ -41,17 +41,17 @@ class User < ActiveRecord::Base
   has_many :api_keys, dependent: :destroy
   accepts_nested_attributes_for :api_keys
 
-  before_create :generate_url_token,
+  before_create :generate_url_tokens,
                 :set_as_non_admin
   after_create :generate_api_keys
 
-  scope :find_by_token_and_hottok,
-            lambda { |token_script, token_hotmart|
+  scope :find_by_hotmart_token_and_hottok,
+            lambda { |hotmart_token, hottok|
               joins(:api_keys).
               where(
-                "users.token = ? AND api_keys.key = ? AND api_keys.type = ?",
-                  token_script,
-                  token_hotmart,
+                "users.hotmart_token = ? AND api_keys.key = ? AND api_keys.type = ?",
+                  hotmart_token,
+                  hottok,
                   'HotmartApiKey'
                 )
             }
@@ -62,8 +62,9 @@ class User < ActiveRecord::Base
 
   private
 
-  def generate_url_token
-    self.token = random_string()
+  def generate_url_tokens
+    self.hotmart_token = random_string()
+    self.helpscout_token = random_string()
   end
 
   def set_as_non_admin
@@ -87,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def already_registered?(token)
-    User.find_by_token(token)
+    User.find_by_hotmart_token(token) || User.find_by_helpscout_token(token)
   end
 
 end

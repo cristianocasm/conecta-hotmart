@@ -11,6 +11,9 @@
 </ul>
 
 <% if request.path =~ /^\/hotmart_api_keys\// %>
-  <mark><%= notification_url(current_user.token) %></mark>
+  <mark><%= notification_url(current_user.hotmart_token) %></mark>
+<% end %>
+<% if request.path =~ /^\/helpscout_api_keys\// %>
+  <mark><%= notification_url(current_user.helpscout_token) %></mark>
 <% end %>
 <%= render :partial => 'form' %>
