@@ -1,4 +1,5 @@
 puts "Starting db seed"
+Rails.application.eager_load!
 
 UserType.create([
   { name: 'admin',
