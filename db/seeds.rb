@@ -21,6 +21,17 @@ User.create!([
     email: 'cristiano.souza.mendonca+client@gmail.com',
     user_type_id: UserType.find_by_name('client').id }
   ])
+
+HotmartNotification.create!([
+  {
+    "hotmart_transaction" => 'abcd',
+    "phone_local_code" => '31',
+    "phone_number" => '3333-4444',
+    "prod_name" => 'Como importar da Libéria',
+    "status" => 'Aprovadim',
+    "user_id" => User.first.id
+  }
+  ])
 puts "Finalizando criação de usuários para testes!!!!!"
 
 DataType.create!([
