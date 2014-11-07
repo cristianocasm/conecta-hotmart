@@ -17,13 +17,7 @@ class ActuationRulesController < ApplicationController
   # GET /actuation_rules/new
   def new
     @actuation_rule = actuation_class.new
-    if params[:method].blank?
-      @api_methods = actuation_model_class.pluck(:id, :name)
-    else
-      @actuation_rule.arguments = actuation_model_class.
-                                    find_by_name(params[:method]).
-                                    arguments if params[:method]
-    end
+    params[:method].blank? ? force_user_choose_an_api_method : build_api_method_arguments
   end
 
   # GET /actuation_rules/1/edit
@@ -88,14 +82,34 @@ class ActuationRulesController < ApplicationController
     descendants.include?(params[:type]) ? params[:type] : 'MailchimpActuationRule'
   end
 
-  # Gets the model class properly
-  def actuation_model_class
+  # Gets the api method model class properly
+  def api_method_model_class
     case params[:type]
     when 'MailchimpActuationRule'
       MailchimpApiMethod
     when 'HelpscoutActuationRule'
       HelpscoutApiMethod
     end
+  end
+
+  # Gets the model class properly
+  def actuation_model_class
+    case params[:type]
+    when 'MailchimpActuationRule'
+      MailchimpActuationRule
+    when 'HelpscoutActuationRule'
+      HelpscoutActuationRule
+    end
+  end
+
+  # Used so that user can choose the api's method
+  def force_user_choose_an_api_method
+    @api_methods = api_method_model_class.pluck(:id, :name)
+  end
+
+  def build_api_method_arguments
+    method = api_method_model_class.find_by_name(params[:method])
+    @actuation_rule.arguments = actuation_model_class.mount_by_method(method, current_user)
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -105,6 +119,16 @@ class ActuationRulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def actuation_rule_params
-    params.require(get_actuation_rule_name.underscore.to_sym).permit(:name, :description)
+    params.
+      require(get_actuation_rule_name.underscore.to_sym).
+      permit(
+        :name,
+        :description,
+        :actuation_params_attributes => [
+            :api_param_id,
+            :argument_id,
+            :value
+          ]
+        )
   end
 end

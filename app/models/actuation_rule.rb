@@ -19,7 +19,7 @@ class ActuationRule < ActiveRecord::Base
   belongs_to :activation_rule
   belongs_to :api_method
 
-  has_many :actuation_params
+  has_many :actuation_params, dependent: :destroy
   has_many :arguments, through: :actuation_params
   accepts_nested_attributes_for :actuation_params, :reject_if => lambda { |c| c[:value].blank? }
 

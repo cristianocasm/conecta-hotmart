@@ -21,3 +21,4 @@
 
 jQuery ->
   $('#data_table').dataTable()
+  $('a').tooltip()

@@ -7,6 +7,8 @@ module ActivationRulesHelper
       options.merge!(collection: api_param.accepted_values.map(&:value))
     elsif api_param.data_type.name == 'boolean'
       options.merge!(as: :radio_buttons)
+    elsif api_param.name == 'group_name'
+      options.merge!(readonly: true)
     end
     
     return options

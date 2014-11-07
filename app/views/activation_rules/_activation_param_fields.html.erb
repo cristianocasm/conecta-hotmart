@@ -1,6 +1,9 @@
 <%- api_param = f.object.api_param -%>
 <div class="row form-group">
   <div class="col-md-5">
+    <%= link_to '?', '#', "data-toggle" => "tooltip",
+                          title: api_param.description,
+                          "data-placement" => "top" %>
     <%= f.label api_param.name %>
     <%= f.input_field :api_param_id, as: :hidden, value: api_param.id %>
   </div>

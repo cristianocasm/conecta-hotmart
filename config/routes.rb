@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :show]
   post "/notifications/:token", to: 'notifications#create'
 
+  get "/hotmart_info/:token", to: 'hotmart_info#show'
+
 end

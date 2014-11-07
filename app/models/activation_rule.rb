@@ -16,7 +16,7 @@ class ActivationRule < ActiveRecord::Base
   
   belongs_to :user
   has_many :notifications
-  has_many :actuation_rules, dependent: :destroy
+  has_many :actuation_rules
 
   has_many :activation_params, dependent: :destroy
   has_many :api_params, :through => :activation_params

@@ -97,6 +97,6 @@ gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status
 gem 'newrelic_rpm'
 # Mailchimp gem
-gem 'mailchimp-api', '~> 2.0.5'
+gem 'mailchimp-api', '2.0.5', require: 'mailchimp'
 # Add a comment summarizing the current schema to the top or bottom of files
 gem 'annotate', '~> 2.6.5'

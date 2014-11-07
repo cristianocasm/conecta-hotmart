@@ -8,6 +8,10 @@
   <dd><%= @actuation_rule.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @actuation_rule.description %></dd>
+  <% @actuation_rule.actuation_params.each do |param| %>
+    <dt><strong><%= ApiParam.human_attribute_name(param.api_param.name) %>:</strong></dt>
+    <dd><%= param.value %></dd>
+  <% end %>
 <dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
