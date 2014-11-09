@@ -24,12 +24,68 @@ User.create!([
 
 HotmartNotification.create!([
   {
-    "hotmart_transaction" => 'abcd',
-    "phone_local_code" => '31',
-    "phone_number" => '3333-4444',
-    "prod_name" => 'Como importar da Libéria',
-    "status" => 'Aprovadim',
-    "user_id" => User.first.id
+    hotmart_transaction: 'abcd',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da Libéria',
+    status: 'started',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'efg',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da Libéria',
+    status: 'approved',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'hij',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da Libéria',
+    status: 'canceled',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'klm',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da Libéria',
+    status: 'chargeback',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'ABCD',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da China',
+    status: 'started',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'EFG',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da China',
+    status: 'approved',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'HIJ',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da China',
+    status: 'canceled',
+    user_id: User.first.id
+  },
+  {
+    hotmart_transaction: 'KLM',
+    phone_local_code: '31',
+    phone_number: '3333-4444',
+    prod_name: 'Como importar da China',
+    status: 'chargeback',
+    user_id: User.first.id
   }
   ])
 puts "Finalizando criação de usuários para testes!!!!!"
