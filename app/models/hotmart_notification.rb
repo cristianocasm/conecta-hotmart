@@ -1,14 +1,12 @@
 class HotmartNotification < ActiveRecord::Base
 
-  def self.find_all_by_user(user_id)
-    notifs = find_all_by_user_id(user_id)
-    grouped_notifs = notifs.group_by { |notif| notif.user_id }
-    grouped_notifs.try(:[],1)
-  end
+  scope :find_latest_notifications_per_product,
+    lambda { |user_id|
+      self.
+        where("user_id = #{user_id}").
+        order("updated_at DESC").
+        group_by { |notif| notif.prod_name }.
+        map { |prod, notif| notif[0] }
+    }
 
-  private
-
-  def find_all_by_user_id(user_id)
-    self.where("user_id = #{user_id}")
-  end
 end
