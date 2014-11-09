@@ -37,7 +37,9 @@ class HelpscoutInfoController < ApplicationController
 
   def is_from_help_scout?(data, signature, secret_key)
     return false if data.nil? || signature.nil? || secret_key.nil?
+    Rails.logger.info "ENTREI!!!!!!!!!!!!!!!!!!!!"
     hmac = OpenSSL::HMAC.digest('sha1', secret_key, data)
+    Rails.logger.info "#{Base64.encode64(hmac).strip == signature.strip}"
     Base64.encode64(hmac).strip == signature.strip
   end
 
