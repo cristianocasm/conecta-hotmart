@@ -5,8 +5,8 @@ class HelpscoutInfoController < ApplicationController
   def get_notification
     Rails.logger.info "******\n"
     Rails.logger.info "Token: #{params[:token]}"
-    Rails.logger.info "Request.header #{request.header}\n"
-    Rails.logger.info "Response.headers #{response.headers}\n"
+    Rails.logger.info "Request.header #{request.headers}\n"
+    Rails.logger.info "Response.headers #{response.header}\n"
     Rails.logger.info "Response.body: #{response.body}\n"
     Rails.logger.info "Request.body: #{request.body}\n"
     Rails.logger.info "Params: #{params}\n"
