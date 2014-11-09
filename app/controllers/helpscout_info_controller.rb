@@ -66,6 +66,6 @@ class HelpscoutInfoController < ApplicationController
       html.gsub!(/TRANS|STAT|PROD/,"")
     end
 
-    return html
+    return {html: html}
   end
 end
