@@ -11,6 +11,10 @@ class HelpscoutInfoController < ApplicationController
                   try(:first).
                   try(:key)
 
+    Rails.logger.info "data: #{data}"
+    Rails.logger.info "signature: #{signature}"
+    Rails.logger.info "secret_key: #{secret_key}"
+
     if is_from_help_scout?(data, signature, secret_key)
       Rails.logger.info "ENTREI!!!!!!!!!"
     
@@ -20,6 +24,7 @@ class HelpscoutInfoController < ApplicationController
       # render nothing: true, status: 200
       render json: html.encode, status: 200
     else
+      Rails.logger.info "!!!!!!!!!!!!!!NÃO ENTREI!!!!!!!!!"
       render nothing: true, status: 200
     end
   end
