@@ -4,17 +4,24 @@ class HelpscoutInfoController < ApplicationController
 
   def get_notification
     Rails.logger.info "******\n"
-    Rails.logger.info "Token: #{params[:token]}"
-    Rails.logger.info "Request.header #{request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]}\n"
-    Rails.logger.info "Response.headers #{response.header}\n"
-    Rails.logger.info "Response.body: #{response.body}\n"
-    Rails.logger.info "Request.body: #{request.body}\n"
     Rails.logger.info "Params: #{params}\n"
-    Rails.logger.info "******\n"
     
-    if is_from_help_scout?(params[:helpscout_info].to_s, params[:token])
-      user_id = User.find_by_helpscout_token(params[:token]).id
-      HotmartNotification.find_by_user_id(user_id)
+    data = params[:helpscout_info].to_s
+    signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
+    user = User.find_by_helpscout_token(params[:token])
+    secret_key = user.
+                  try(:helpscout_api_key).
+                  try(:first).
+                  try(:key)
+
+    Rails.logger.info "data: #{data}"
+    Rails.logger.info "signature: #{signature}"
+    Rails.logger.info "secret_key: #{secret_key}"
+    Rails.logger.info "******\n"
+
+
+    if is_from_help_scout?(data, signature, secret_key)
+      HotmartNotification.find_by_user_id(user)
       render nothing: true, status: 200
     else
       render nothing: true, status: 401
@@ -28,9 +35,9 @@ class HelpscoutInfoController < ApplicationController
 
   # WEBHOOK_SECRET_KEY = "your secret key"
 
-  def is_from_help_scout?(data, signature)
-    return false if data.nil? || signature.nil?
-    hmac = OpenSSL::HMAC.digest('sha1', WEBHOOK_SECRET_KEY, data)
+  def is_from_help_scout?(data, signature, secret_key)
+    return false if data.nil? || signature.nil? || secret_key
+    hmac = OpenSSL::HMAC.digest('sha1', secret_key, data)
     Base64.encode64(hmac).strip == signature.strip
   end
 
