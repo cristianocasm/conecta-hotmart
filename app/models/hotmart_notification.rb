@@ -7,7 +7,7 @@ class HotmartNotification < ActiveRecord::Base
               "phone_number",
               "prod_name",
               "status",
-              "updated_at").
+              "MAX(updated_at)").
             where("user_id = #{user_id}").
             group(:prod_name).
             having('updated_at = MAX(updated_at)')
