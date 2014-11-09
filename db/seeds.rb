@@ -29,7 +29,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da Libéria',
     status: 'started',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'efg',
@@ -37,7 +38,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da Libéria',
     status: 'approved',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'hij',
@@ -45,7 +47,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da Libéria',
     status: 'canceled',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'klm',
@@ -53,7 +56,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da Libéria',
     status: 'chargeback',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'ABCD',
@@ -61,7 +65,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da China',
     status: 'started',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'EFG',
@@ -69,7 +74,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da China',
     status: 'approved',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'HIJ',
@@ -77,7 +83,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da China',
     status: 'canceled',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   },
   {
     hotmart_transaction: 'KLM',
@@ -85,7 +92,8 @@ HotmartNotification.create!([
     phone_number: '3333-4444',
     prod_name: 'Como importar da China',
     status: 'chargeback',
-    user_id: User.first.id
+    user_id: User.first.id,
+    customer_email: 'test@test.com'
   }
   ])
 puts "Finalizando criação de usuários para testes!!!!!"
