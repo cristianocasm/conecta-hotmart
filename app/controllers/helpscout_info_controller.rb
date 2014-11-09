@@ -1,4 +1,4 @@
-class NotificationsController < ApplicationController
+class HelpscoutInfoController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :get_notification
   skip_before_filter :authenticate_user!, only: :get_notification
 
