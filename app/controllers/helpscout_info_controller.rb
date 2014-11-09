@@ -3,14 +3,17 @@ class HelpscoutInfoController < ApplicationController
   skip_before_filter :authenticate_user!, only: :get_notification
 
   def get_notification
-    Rails.logger.info "Token: #{params[:token]}\n"
+    Rails.logger.info "******\n"
+    Rails.logger.info "Token: #{params[:token]}"
+    Rails.logger.info "Request.header #{request.header}\n"
     Rails.logger.info "Response.header #{response.header}\n"
     Rails.logger.info "Response.body: #{response.body}\n"
     Rails.logger.info "Request.body: #{request.body}\n"
     Rails.logger.info "Params: #{params}\n"
+    Rails.logger.info "******\n"
     
-    if is_from_help_scout?(params[:data], params[:token])
-      user_id = User.find_by_helpscout_token(params[:token]).first.id
+    if is_from_help_scout?(params[:helpscout_info].to_s, params[:token])
+      user_id = User.find_by_helpscout_token(params[:token]).id
       HotmartNotification.find_by_user_id(user_id)
       render nothing: true, status: 200
     else
