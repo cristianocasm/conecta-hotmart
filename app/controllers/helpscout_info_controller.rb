@@ -18,7 +18,7 @@ class HelpscoutInfoController < ApplicationController
     if is_from_help_scout?(data, signature, secret_key)
       Rails.logger.info "ENTREI!!!!!!!!!"
     
-      notifications = HotmartNotification.find_all_by_user_id(user.id)
+      notifications = HotmartNotification.find_all_by_user(user.id)
       html = build_html_response(notifications, user)
       Rails.logger.info html
       # render nothing: true, status: 200
