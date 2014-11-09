@@ -23,7 +23,7 @@ class HelpscoutInfoController < ApplicationController
                           params[:helpscout_info][:customer][:email]
                         )
       html = build_html_response(notifications, user)
-      Rails.logger.info html
+      Rails.logger.info html.encode
       # render nothing: true, status: 200
       render json: html.encode, status: 200
     else
@@ -63,7 +63,7 @@ class HelpscoutInfoController < ApplicationController
         html + "TRANS STAT PROD"
       end
 
-      html.gsub(/TRANS|STAT|PROD/,"")
+      html.gsub!(/TRANS|STAT|PROD/,"")
     end
 
     return html
