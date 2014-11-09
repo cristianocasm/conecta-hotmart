@@ -6,7 +6,8 @@ class HelpscoutInfoController < ApplicationController
     Rails.logger.info "******\n"
     Rails.logger.info "Params: #{params}\n"
     
-    data = params[:helpscout_info].keep_if { |key, val| ["ticket", "customer"].include? key }.to_s
+    # data = params[:helpscout_info].keep_if { |key, val| ["ticket", "customer"].include? key }.to_s
+    data = params[:helpscout_info].to_json
     signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
     user = User.find_by_helpscout_token(params[:token])
     secret_key = user.
