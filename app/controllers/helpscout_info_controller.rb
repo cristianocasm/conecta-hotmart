@@ -6,7 +6,7 @@ class HelpscoutInfoController < ApplicationController
     Rails.logger.info "******\n"
     Rails.logger.info "Params: #{params}\n"
     
-    data = params[:helpscout_info]
+    data = params[:helpscout_info].to_s
     signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
     user = User.find_by_helpscout_token(params[:token])
     secret_key = user.
@@ -37,7 +37,6 @@ class HelpscoutInfoController < ApplicationController
 
   def is_from_help_scout?(data, signature, secret_key)
     return false if data.nil? || signature.nil? || secret_key.nil?
-    Rails.logger.info "ENTREI!!!!!!!!!!!!!!!!!!!!!!!!"
     hmac = OpenSSL::HMAC.digest('sha1', secret_key, data)
     Base64.encode64(hmac).strip == signature.strip
   end
