@@ -17,11 +17,5 @@ RSpec.describe "ActuationRules", type: :feature do
       click_link I18n.t('api.rule.mailchimp_actuation_rules')
       expect(page).to have_content(I18n.t('.title', :default => MailchimpActuationRule.model_name.human.pluralize.titleize))
     end
-
-    scenario "User should be able to access helpscout actuation rule index" do
-      click_link I18n.t('api.rule.helpscout_actuation_rules')
-      expect(page).to have_content(I18n.t('.title', :default => HelpscoutActuationRule.model_name.human.pluralize.titleize))
-    end
-
   end
 end

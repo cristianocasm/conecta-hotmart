@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   # Routes for STI actuation_rule
   resources :mailchimp_actuation_rules, controller: 'actuation_rules', type: 'MailchimpActuationRule'
-  resources :helpscout_actuation_rules, controller: 'actuation_rules', type: 'HelpscoutActuationRule'
 
   resources :notifications, only: [:index, :show]
   post "/notifications/:token", to: 'notifications#create'
