@@ -54,13 +54,16 @@ class HelpscoutInfoController < ApplicationController
         "
 
       notifications.each do |notif|
-        html.gsub!(/PROD/) { "<ul> <li>Produto: #{notif.prod_name} </li>" }
-        html.gsub!(/TRANS/) { "<ul> <li>Transação: #{notif.hotmart_transaction} </li>" }
-        html.gsub!(/STAT/) { "<li>Status: #{notif.status} </li></ul></ul>
-        
+        html.gsub!(/PROD/) { "<ul>
+                                <li>Produto: #{notif.prod_name}</li>" }
+        html.gsub!(/TRANS/) { " <ul>
+                                  <li>Transação: #{notif.hotmart_transaction}</li>" }
+        html.gsub!(/STAT/) { "    <li>Status: #{notif.status} </li>
+                                </ul>
+                              </ul>
+            PROD
             TRANS
-            STAT
-            PROD" }
+            STAT" }
         html + "TRANS STAT PROD"
       end
 
