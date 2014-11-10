@@ -5,8 +5,8 @@ class HotmartNotification < ActiveRecord::Base
       self.
         where("user_id = #{user_id} AND customer_email = '#{customer_email}'").
         order("updated_at DESC").
-        group_by { |notif| notif.prod_name }.
-        map { |prod, notif| notif[0] }
+        group_by { |notif| notif.hotmart_transaction }.
+        map { |trans, notif| notif[0] }
     }
 
 end
