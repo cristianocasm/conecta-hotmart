@@ -48,9 +48,9 @@ class HelpscoutInfoController < ApplicationController
       html = 
       "<h4>#{user.name.humanize}</h4>
         <p class='muted'>(#{ntfc.phone_local_code}) #{ntfc.phone_number}</p>
+            PROD
             TRANS
             STAT
-            PROD
         "
 
       notifications.each do |notif|
