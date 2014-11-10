@@ -6,7 +6,6 @@ class AddLeftHotmartFieldsToHotmartNotification < ActiveRecord::Migration
     add_column :hotmart_notifications, :price, :string
     add_column :hotmart_notifications, :aff, :string
     add_column :hotmart_notifications, :aff_name, :string
-    add_column :hotmart_notifications, :email, :string
     add_column :hotmart_notifications, :name, :string
     add_column :hotmart_notifications, :first_name, :string
     add_column :hotmart_notifications, :last_name, :string
@@ -43,7 +42,6 @@ class AddLeftHotmartFieldsToHotmartNotification < ActiveRecord::Migration
     remove_column :hotmart_notifications, :price, :string
     remove_column :hotmart_notifications, :aff, :string
     remove_column :hotmart_notifications, :aff_name, :string
-    remove_column :hotmart_notifications, :email, :string
     remove_column :hotmart_notifications, :name, :string
     remove_column :hotmart_notifications, :first_name, :string
     remove_column :hotmart_notifications, :last_name, :string
