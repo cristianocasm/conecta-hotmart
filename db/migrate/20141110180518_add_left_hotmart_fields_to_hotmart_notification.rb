@@ -1,0 +1,75 @@
+class AddLeftHotmartFieldsToHotmartNotification < ActiveRecord::Migration
+  def change
+    add_column :hotmart_notifications, :hottok, :string
+    add_column :hotmart_notifications, :prod, :string
+    add_column :hotmart_notifications, :off, :string
+    add_column :hotmart_notifications, :price, :string
+    add_column :hotmart_notifications, :aff, :string
+    add_column :hotmart_notifications, :aff_name, :string
+    add_column :hotmart_notifications, :email, :string
+    add_column :hotmart_notifications, :name, :string
+    add_column :hotmart_notifications, :first_name, :string
+    add_column :hotmart_notifications, :last_name, :string
+    add_column :hotmart_notifications, :doc, :string
+    add_column :hotmart_notifications, :address, :string
+    add_column :hotmart_notifications, :address_number, :string
+    add_column :hotmart_notifications, :address_country, :string
+    add_column :hotmart_notifications, :address_district, :string
+    add_column :hotmart_notifications, :address_comp, :string
+    add_column :hotmart_notifications, :address_city, :string
+    add_column :hotmart_notifications, :address_state, :string
+    add_column :hotmart_notifications, :address_zip_code, :string
+    add_column :hotmart_notifications, :xcod, :string
+    add_column :hotmart_notifications, :src, :string
+    add_column :hotmart_notifications, :payment_engine, :string
+    add_column :hotmart_notifications, :payment_type, :string
+    add_column :hotmart_notifications, :hotkey, :string
+    add_column :hotmart_notifications, :name_subscription_plan, :string
+    add_column :hotmart_notifications, :subscriber_code, :string
+    add_column :hotmart_notifications, :cms_marketplace, :string
+    add_column :hotmart_notifications, :cms_vendor, :string
+    add_column :hotmart_notifications, :cms_aff, :string
+    add_column :hotmart_notifications, :callback_type, :string
+    add_column :hotmart_notifications, :subscription_status, :string
+    add_column :hotmart_notifications, :transaction_ext, :string
+    add_column :hotmart_notifications, :sck, :string
+    add_column :hotmart_notifications, :purchase_date, :string
+  end
+
+  def down
+    remove_column :hotmart_notifications, :hottok, :string
+    remove_column :hotmart_notifications, :prod, :string
+    remove_column :hotmart_notifications, :off, :string
+    remove_column :hotmart_notifications, :price, :string
+    remove_column :hotmart_notifications, :aff, :string
+    remove_column :hotmart_notifications, :aff_name, :string
+    remove_column :hotmart_notifications, :email, :string
+    remove_column :hotmart_notifications, :name, :string
+    remove_column :hotmart_notifications, :first_name, :string
+    remove_column :hotmart_notifications, :last_name, :string
+    remove_column :hotmart_notifications, :doc, :string
+    remove_column :hotmart_notifications, :address, :string
+    remove_column :hotmart_notifications, :address_number, :string
+    remove_column :hotmart_notifications, :address_country, :string
+    remove_column :hotmart_notifications, :address_district, :string
+    remove_column :hotmart_notifications, :address_comp, :string
+    remove_column :hotmart_notifications, :address_city, :string
+    remove_column :hotmart_notifications, :address_state, :string
+    remove_column :hotmart_notifications, :address_zip_code, :string
+    remove_column :hotmart_notifications, :xcod, :string
+    remove_column :hotmart_notifications, :src, :string
+    remove_column :hotmart_notifications, :payment_engine, :string
+    remove_column :hotmart_notifications, :payment_type, :string
+    remove_column :hotmart_notifications, :hotkey, :string
+    remove_column :hotmart_notifications, :name_subscription_plan, :string
+    remove_column :hotmart_notifications, :subscriber_code, :string
+    remove_column :hotmart_notifications, :cms_marketplace, :string
+    remove_column :hotmart_notifications, :cms_vendor, :string
+    remove_column :hotmart_notifications, :cms_aff, :string
+    remove_column :hotmart_notifications, :callback_type, :string
+    remove_column :hotmart_notifications, :subscription_status, :string
+    remove_column :hotmart_notifications, :transaction_ext, :string
+    remove_column :hotmart_notifications, :sck, :string
+    remove_column :hotmart_notifications, :purchase_date, :stringremove
+  end
+end

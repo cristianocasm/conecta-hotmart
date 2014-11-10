@@ -11,12 +11,7 @@ class HelpscoutInfoController < ApplicationController
                   try(:first).
                   try(:key)
 
-    Rails.logger.info "params: #{params}"
-    Rails.logger.info "signature: #{signature}"
-    Rails.logger.info "secret_key: #{secret_key}"
-
     if is_from_help_scout?(data, signature, secret_key)
-      Rails.logger.info "ENTREI!!!!!!!!!"
       notifications = HotmartNotification.
                         find_latest_notifications_per_product(
                           user.id,
@@ -24,10 +19,8 @@ class HelpscoutInfoController < ApplicationController
                         )
       html = build_html_response(notifications, user)
       Rails.logger.info html
-      # render nothing: true, status: 200
       render json: html, status: 200
     else
-      Rails.logger.info "!!!!!!!!!!!!!!NÃO ENTREI!!!!!!!!!"
       render nothing: true, status: 200
     end
   end
