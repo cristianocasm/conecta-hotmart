@@ -23,7 +23,7 @@ class HelpscoutInfoController < ApplicationController
     else
       html = build_failure_html_response
 
-      render nothing: true, status: 200
+      render json: html, status: 200
     end
   end
 
