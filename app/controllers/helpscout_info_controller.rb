@@ -22,7 +22,7 @@ class HelpscoutInfoController < ApplicationController
       render json: html, status: 200
     else
       html = build_failure_html_response
-      
+
       render nothing: true, status: 200
     end
   end
@@ -65,10 +65,10 @@ class HelpscoutInfoController < ApplicationController
       html.gsub!(/TRANS|STAT|PROD/,"")
     end
 
-    return {html: html}.to_json.encode
+    return { html: html }.to_json.encode
   end
 
   def build_failure_html_response
-    "<h4>Cliente sem histórico</h4>"
+    { html: "<h4>Cliente sem histórico</h4>" }.to_json.encode
   end
 end
