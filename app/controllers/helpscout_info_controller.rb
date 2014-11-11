@@ -17,10 +17,12 @@ class HelpscoutInfoController < ApplicationController
                           user.id,
                           params[:helpscout_info][:customer][:email]
                         )
-      html = build_html_response(notifications, user)
-      Rails.logger.info html
+      html = build_success_html_response(notifications, user)
+
       render json: html, status: 200
     else
+      html = build_failure_html_response
+      
       render nothing: true, status: 200
     end
   end
@@ -33,7 +35,7 @@ class HelpscoutInfoController < ApplicationController
     Base64.encode64(hmac).strip == signature.strip
   end
 
-  def build_html_response(notifications, user)
+  def build_success_html_response(notifications, user)
     html = nil
     
     unless notifications.blank?
@@ -64,5 +66,9 @@ class HelpscoutInfoController < ApplicationController
     end
 
     return {html: html}.to_json.encode
+  end
+
+  def build_failure_html_response
+    "<h4>Cliente sem histórico</h4>"
   end
 end
