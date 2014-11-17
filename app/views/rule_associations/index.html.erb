@@ -27,10 +27,12 @@
                           rule_association_path(ac_rule), class: 'btn btn-success btn-xs'  %>
               <%# link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_activation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
-              <%# link_to t('.destroy', :default => t("helpers.links.destroy")), rule,
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          rule_association_path(ac_rule),
                           :method => :delete,
                           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                           :class => 'btn btn-xs btn-danger' %>
+                          
             </td>
           </tr>
         <% end %>
@@ -41,6 +43,6 @@
 
 <br>
 
-<%# link_to t('.new', :default => t("helpers.links.new")),
-            new_activation_rule_path,
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_rule_association_path,
             :class => 'btn btn-primary' %>

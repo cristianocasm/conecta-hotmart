@@ -6,7 +6,7 @@ class ActivationRulesController < ApplicationController
   # GET /rules
   # GET /rules.json
   def index
-    @activation_rules = ActivationRule.all
+    @activation_rules = current_user.activation_rules
   end
 
   # GET /rules/1
@@ -77,7 +77,8 @@ class ActivationRulesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_activation_rule
-    @activation_rule = ActivationRule.find(params[:id])
+    @activation_rule = current_user.activation_rules.find_by_id(params[:id])
+    check_ownership(@activation_rule, activation_rules_url)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -88,6 +89,7 @@ class ActivationRulesController < ApplicationController
         :name,
         :description,
         :activation_params_attributes => [
+            :id,
             :api_param_id,
             :value
           ]

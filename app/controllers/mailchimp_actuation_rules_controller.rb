@@ -78,7 +78,8 @@ class MailchimpActuationRulesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_mailchimp_actuation_rule
-    @mailchimp_actuation_rule = MailchimpActuationRule.find(params[:id])
+    @mailchimp_actuation_rule = current_user.mailchimp_actuation_rules.find_by_id(params[:id])
+    check_ownership(@mailchimp_actuation_rule, mailchimp_actuation_rule_url)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

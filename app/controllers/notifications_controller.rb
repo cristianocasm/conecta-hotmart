@@ -9,7 +9,9 @@ class NotificationsController < ApplicationController
       record_notification(user.id)
 
       user.activation_rules.each do |regra|
-        runActuationRules(user, regra) if regra.activated?(params)
+        if(regra.mailchimp_actuation_rules)
+          runActuationRules(user, regra) if regra.activated?(params)
+        end
       end
 
       render nothing: true, status: 200
@@ -21,7 +23,7 @@ class NotificationsController < ApplicationController
   private
 
   def runActuationRules(user, rule)
-    rule.actuation_rules.each { |act_rule| act_rule.run(user, params) }
+    rule.mailchimp_actuation_rules.each { |act_rule| act_rule.run(user, params) }
   end
 
   def record_notification(user_id)

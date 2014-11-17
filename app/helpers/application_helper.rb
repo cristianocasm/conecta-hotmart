@@ -21,10 +21,6 @@ module ApplicationHelper
   end
 
   def is_active?(controller, type=nil)
-    if type
-      "active" if params[:controller] == controller && params[:type] == type
-    else
-      "active" if params[:controller] == controller
-    end
+    "active" if params[:controller] == controller
   end
 end

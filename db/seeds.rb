@@ -102,11 +102,14 @@ DataType.create!([
     { name: 'string',
       description: 'string' },
     { name: 'boolean',
-      description: 'boolean' }
+      description: 'boolean' },
+    { name: 'date',
+      description: 'date' }
   ])
 
 string_id = DataType.find_by_name('string').id
 boolean_id = DataType.find_by_name('boolean').id
+date_id = DataType.find_by_name('date').id
 
 puts "Iniciando criação dos parâmetros Hotmart"
 
@@ -263,9 +266,13 @@ HotmartParam.create!([
                 description: 'sck (origem do checkout) é um código de até 6 caracteres que pode ser customizado pelo usuário para rastrear origens das vendas realizadas em seus checkouts (ex: fb, blog, adwrd).',
                 data_type_id: string_id,
                 show_in_activation_rule: true },
-              { name: 'purchase_date',
-                description: 'Data do pedido',
-                data_type_id: string_id,
+              { name: 'purchase_date_start',
+                description: 'Data do pedido (início)',
+                data_type_id: date_id,
+                show_in_activation_rule: true },
+              { name: 'purchase_date_end',
+                description: 'Data do pedido (fim)',
+                data_type_id: date_id,
                 show_in_activation_rule: true }
               ])
 

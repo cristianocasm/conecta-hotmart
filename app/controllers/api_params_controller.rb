@@ -72,7 +72,8 @@ class ApiParamsController < ApplicationController
   end
 
   def set_api_obj
-    @api_param = api_class.find(params[:id])
+    @api_param = api_class.find_by_id(params[:id])
+    # check_ownership(@api_param)
   end
 
   def api_param_params

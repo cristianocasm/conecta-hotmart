@@ -52,7 +52,7 @@
             <li class=<%= 'active' if is_active?('activation_rules') %>>
               <%= link_to t('api.rule.rules'), activation_rules_path %>
             </li>
-            <li class=<%= 'active' if is_active?('actuation_rules', 'MailchimpActuationRule') %>>
+            <li class=<%= 'active' if is_active?('mailchimp_actuation_rules') %>>
               <%= link_to t('api.rule.mailchimp_actuation_rules'), mailchimp_actuation_rules_path %>
             </li>
             <li class=<%= 'active' if is_active?('rule_associations') %>>

@@ -25,8 +25,20 @@ class ActivationRule < ActiveRecord::Base
 
   # Dentro do ActivationRule model
   def activated?(params)
+    date_min = nil
+    date_max = nil
+
     self.activation_params.each do |parametro|
-      return false unless parametro.value == params[parametro.api_param.name]
+      if(parametro.api_param.name == "purchase_date_start" && parametro.value.downcase.to_date)
+        date_min = parametro.value.downcase.to_date
+        return false if date_min > params[:purchase_date].to_date
+      elsif(parametro.api_param.name == "purchase_date_end" && parametro.value.downcase.to_date)
+        date_max = parametro.value.downcase.to_date
+        return false if date_max < params[:purchase_date].to_date
+      else
+        return false unless parametro.value.downcase == params[parametro.api_param.name].try(:downcase) ||
+                            parametro.value == "" # Garante que parâmetros não preenchidos sejam ignorados
+      end
     end
 
     return true

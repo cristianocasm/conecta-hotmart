@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def check_ownership(obj, url)
+    redirect_to url,
+      alert: 'Você não tem permissão para acessar esta página' unless @activation_rule
+  end
+
   # script_api_path is defined inside ApplicationHelper module
   helper_method :script_api_path
 
