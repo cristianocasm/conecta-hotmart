@@ -16,11 +16,12 @@ class ActivationRule < ActiveRecord::Base
   
   belongs_to :user
   has_many :notifications
-  has_many :actuation_rules
+  has_many :rule_associations
+  has_many :mailchimp_actuation_rules ,through: :rule_associations
 
   has_many :activation_params, dependent: :destroy
   has_many :api_params, :through => :activation_params
-  accepts_nested_attributes_for :activation_params, :reject_if => lambda { |c| c[:value].blank? }
+  accepts_nested_attributes_for :activation_params#, :reject_if => lambda { |c| c[:value].blank? }
 
   # Dentro do ActivationRule model
   def activated?(params)

@@ -100,3 +100,5 @@ gem 'newrelic_rpm'
 gem 'mailchimp-api', '2.0.5', require: 'mailchimp'
 # Add a comment summarizing the current schema to the top or bottom of files
 gem 'annotate', '~> 2.6.5'
+# Permite a criação de recursos sem persistência de objetos como se eles existissem
+gem 'active_attr'

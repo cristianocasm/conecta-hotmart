@@ -14,13 +14,14 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  name                   :string(255)
-#  token                  :string(255)
+#  hotmart_token          :string(255)
 #  hotmart_login          :string(255)
 #  hotmart_access_token   :string(255)
 #  role_id                :integer
 #  created_at             :datetime
 #  updated_at             :datetime
 #  user_type_id           :integer
+#  helpscout_token        :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

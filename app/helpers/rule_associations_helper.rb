@@ -1,0 +1,2 @@
+module RuleAssociationsHelper
+end

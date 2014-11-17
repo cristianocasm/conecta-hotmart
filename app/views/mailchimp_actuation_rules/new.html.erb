@@ -1,0 +1,13 @@
+<%- model_class = MailchimpActuationRule -%>
+<% if @method.blank? %>
+  <% @api_methods.each do |method| %>
+  <%= link_to method[1], new_mailchimp_actuation_rule_path(method: method[1]),
+            :class => 'btn btn-primary' %>
+  <% end %>
+<% else %>
+  <div class="page-header">
+    <h1><%=t '.title', :default => [:'helpers.titles.actuation_new', "%{model} %{method} "], :model => model_class.model_name.human.titleize, :method => @method.name.titleize %></h1>
+  </div>
+
+  <%= render 'form' %>
+<% end %>

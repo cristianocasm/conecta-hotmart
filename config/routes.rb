@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   # get 'user/update'
 
   devise_scope :user do
@@ -19,9 +19,8 @@ Rails.application.routes.draw do
   resources :mailchimp_api_keys, controller: 'api_keys', type: 'MailchimpApiKey', only: [:edit, :update]
 
   resources :activation_rules
-
-  # Routes for STI actuation_rule
-  resources :mailchimp_actuation_rules, controller: 'actuation_rules', type: 'MailchimpActuationRule'
+  resources :mailchimp_actuation_rules
+  resources :rule_associations
 
   resources :notifications, only: [:index, :show]
   post "/notifications/:token", to: 'notifications#create'

@@ -14,13 +14,14 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  name                   :string(255)
-#  token                  :string(255)
+#  hotmart_token          :string(255)
 #  hotmart_login          :string(255)
 #  hotmart_access_token   :string(255)
 #  role_id                :integer
 #  created_at             :datetime
 #  updated_at             :datetime
 #  user_type_id           :integer
+#  helpscout_token        :string(255)
 #
 
 require 'rails_helper'
@@ -37,6 +38,7 @@ RSpec.describe User, :type => :model do
   it { should have_many :api_keys }
   it { should have_many :notifications }
   it { should have_many :activation_rules }
+  it { should have_many :mailchimp_actuation_rules }
 
   describe "before create" do
 

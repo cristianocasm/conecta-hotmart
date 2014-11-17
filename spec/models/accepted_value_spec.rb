@@ -7,6 +7,7 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  value        :string(255)
+#  placeholder  :string(255)
 #
 
 require 'rails_helper'
