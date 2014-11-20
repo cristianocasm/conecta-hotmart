@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
   # it can execute the query.
   delegate :helpscout_api_key, :hotmart_api_key, :mailchimp_api_key, to: :api_keys
   
-  has_many :mailchimp_actuation_rules
+  has_many :mailchimp_actuation_rules, dependent: :destroy
+  has_many :hotmart_notifications, dependent: :destroy
   belongs_to :user_type
   has_many :notifications, dependent: :destroy
   has_many :activation_rules, dependent: :destroy

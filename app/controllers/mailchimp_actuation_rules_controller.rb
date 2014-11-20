@@ -90,6 +90,7 @@ class MailchimpActuationRulesController < ApplicationController
                 :description,
                 :api_method_id,
                 :actuation_params_attributes => [
+                  :id,
                   :argument_id,
                   :value
                 ]

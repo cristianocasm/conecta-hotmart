@@ -1,0 +1,93 @@
+<%- model_class = Notification -%>
+<div class="page-header">
+  <h1>Notificação Hotmart</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:hotmart_transaction) %>:</strong></dt>
+  <dd><%= @notification.hotmart_transaction %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone_local_code) %>:</strong></dt>
+  <dd><%= @notification.phone_local_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= @notification.phone_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:prod_name) %>:</strong></dt>
+  <dd><%= @notification.prod_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @notification.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:customer_email) %>:</strong></dt>
+  <dd><%= @notification.customer_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hottok) %>:</strong></dt>
+  <dd><%= @notification.hottok %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:prod) %>:</strong></dt>
+  <dd><%= @notification.prod %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:off) %>:</strong></dt>
+  <dd><%= @notification.off %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @notification.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:aff) %>:</strong></dt>
+  <dd><%= @notification.aff %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:aff_name) %>:</strong></dt>
+  <dd><%= @notification.aff_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @notification.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @notification.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @notification.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:doc) %>:</strong></dt>
+  <dd><%= @notification.doc %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @notification.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_number) %>:</strong></dt>
+  <dd><%= @notification.address_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_country) %>:</strong></dt>
+  <dd><%= @notification.address_country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_district) %>:</strong></dt>
+  <dd><%= @notification.address_district %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_comp) %>:</strong></dt>
+  <dd><%= @notification.address_comp %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_city) %>:</strong></dt>
+  <dd><%= @notification.address_city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_state) %>:</strong></dt>
+  <dd><%= @notification.address_state %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_zip_code) %>:</strong></dt>
+  <dd><%= @notification.address_zip_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:xcod) %>:</strong></dt>
+  <dd><%= @notification.xcod %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:src) %>:</strong></dt>
+  <dd><%= @notification.src %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_engine) %>:</strong></dt>
+  <dd><%= @notification.payment_engine %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_type) %>:</strong></dt>
+  <dd><%= @notification.hotkey %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hotkey) %>:</strong></dt>
+  <dd><%= @notification.hotkey %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name_subscription_plan) %>:</strong></dt>
+  <dd><%= @notification.name_subscription_plan %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:subscriber_code) %>:</strong></dt>
+  <dd><%= @notification.subscriber_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cms_marketplace) %>:</strong></dt>
+  <dd><%= @notification.cms_marketplace %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cms_vendor) %>:</strong></dt>
+  <dd><%= @notification.cms_vendor %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cms_aff) %>:</strong></dt>
+  <dd><%= @notification.cms_aff %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:callback_type) %>:</strong></dt>
+  <dd><%= @notification.callback_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:subscription_status) %>:</strong></dt>
+  <dd><%= @notification.subscription_status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:transaction_ext) %>:</strong></dt>
+  <dd><%= @notification.transaction_ext %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sck) %>:</strong></dt>
+  <dd><%= @notification.sck %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:purchase_date) %>:</strong></dt>
+  <dd><%= @notification.purchase_date %></dd>
+<dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              notifications_path, :class => 'btn btn-default'  %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              @notification.notification,
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

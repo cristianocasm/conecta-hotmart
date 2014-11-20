@@ -39,6 +39,7 @@ RSpec.describe User, :type => :model do
   it { should have_many :notifications }
   it { should have_many :activation_rules }
   it { should have_many :mailchimp_actuation_rules }
+  it { should have_many :hotmart_notifications }
 
   describe "before create" do
 

@@ -18,8 +18,7 @@ FactoryGirl.define do
   factory :notification do
     user_id 1
     activation_rule_id 1
-    hotmart_notification "MyString"
+    hotmart_notification_id 1
     mailchimp_response "MyString"
-    helpscout_response "MyString"
   end
 end

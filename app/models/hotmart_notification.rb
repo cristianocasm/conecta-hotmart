@@ -49,6 +49,9 @@
 
 class HotmartNotification < ActiveRecord::Base
 
+  belongs_to :user
+  has_one :notification
+
   scope :find_latest_notifications_per_product,
     lambda { |user_id, customer_email|
       self.

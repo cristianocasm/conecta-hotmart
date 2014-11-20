@@ -2,17 +2,29 @@ class NotificationsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   skip_before_filter :authenticate_user!, only: :create
 
+  layout 'client'
+
+  def index
+    @logs = current_user.notifications
+  end
+
+  def show
+    @notification = current_user.notifications.find(params[:id]).try(:hotmart_notification)
+    check_ownership(@notification, notifications_url)
+  end
+
   def create
     user = User.find_by_hotmart_token_and_hottok(params[:token], params[:hottok]).try(:first)
     
     if user
-      record_notification(user.id)
-
-      user.activation_rules.each do |regra|
-        if(regra.mailchimp_actuation_rules)
-          runActuationRules(user, regra) if regra.activated?(params)
+      msgs = 
+        user.activation_rules.map do |regra|
+          if(regra.mailchimp_actuation_rules)
+            runActuationRules(user, regra) if regra.activated?(params)
+          end
         end
-      end
+
+      record_notification(user.id, msgs)
 
       render nothing: true, status: 200
     else
@@ -23,10 +35,28 @@ class NotificationsController < ApplicationController
   private
 
   def runActuationRules(user, rule)
-    rule.mailchimp_actuation_rules.each { |act_rule| act_rule.run(user, params) }
+    rule.mailchimp_actuation_rules.map { |act_rule| act_rule.run(user, params, rule.id) }
   end
 
-  def record_notification(user_id)
+  def record_notification(user_id, msgs)
+    hn = record_hotmart_notification(user_id)
+
+    msgs.each do |acti_msg|
+      mc_msg = ""
+      acti_msg.each do |mc_actuation_msg|
+        mc_msg += "(#{mc_actuation_msg[:name]}) #{mc_actuation_msg[:error] || mc_actuation_msg[:success]}\n"
+      end
+
+      Notification.create!(
+        user_id: user_id,
+        activation_rule_id: acti_msg.first[:activation_rule],
+        hotmart_notification_id: hn.id,
+        mailchimp_response: mc_msg
+        )
+    end
+  end
+
+  def record_hotmart_notification(user_id)
     HotmartNotification.create({
       hotmart_transaction: params[:transaction],
       phone_local_code: params[:phone_local_code],

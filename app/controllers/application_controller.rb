@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def check_ownership(obj, url)
     redirect_to url,
-      alert: 'Você não tem permissão para acessar esta página' unless @activation_rule
+      alert: 'Você não tem permissão para acessar esta página' unless obj
   end
 
   # script_api_path is defined inside ApplicationHelper module

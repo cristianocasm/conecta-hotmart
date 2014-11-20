@@ -17,5 +17,9 @@
  */
 
 .icon-green {
-    color: green;
+  color: green;
+}
+
+#logo {
+  max-height: 43px;  
 }
