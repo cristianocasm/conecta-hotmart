@@ -12,7 +12,7 @@
   <dd></dd>
   <% @activation_rule.activation_params.each do |activation_param| %>
     <dt><strong><%= ApiParam.human_attribute_name(activation_param.api_param.name) %>:</strong></dt>
-    <dd><%= activation_param.value %></dd>
+    <dd><%= (activation_param.api_param.name == 'purchase_date_start' || activation_param.api_param.name == 'purchase_date_end') ? activation_param.value.to_date.try(:strftime, "%d/%m/%Y") : activation_param.value %></dd>
   <% end %>
 <dl>
 

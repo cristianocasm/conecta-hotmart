@@ -1,13 +1,14 @@
 <%- api_param = f.object.api_param -%>
+<%- activation_param = f.object -%>
 <div class="row form-group">
   <div class="col-md-5">
     <%= link_to '?', '#', "data-toggle" => "tooltip",
-                          title: api_param.description,
+                          title: activation_param.api_param.description,
                           "data-placement" => "top" %>
-    <%= f.label api_param.name %>
-    <%= f.input_field :api_param_id, as: :hidden, value: api_param.id %>
+    <%= f.label activation_param.api_param.name %>
+    <%= f.input_field :api_param_id, as: :hidden, value: activation_param.api_param.id %>
   </div>
   <div class="col-md-7">
-    <%= f.input_field :value, create_options(api_param) %>
+    <%= f.input_field :value, create_options(activation_param) %>
   </div>
 </div>
