@@ -64,6 +64,24 @@ class MailchimpActuationRulesController < ApplicationController
     end
   end
 
+  # AJAX GET "/load_group_names"
+  def load_group_names
+    mc = Mailchimp::API.new(current_user.mailchimp_api_key.first.key)
+    interestGroupings = mc.lists.interest_groupings(params[:list_id])
+    ig_names = interestGroupings.map do |ig|
+      ig["groups"].map do |gp|
+        { id: "#{ig["id"]}_#{gp["id"]}", content: "(#{ig["name"]}) #{gp["name"]}" }
+      end
+    end
+
+    rescue => e
+      render json: ig_names, :status => :unprocessable_entity
+    else
+      respond_to do |format|
+        format.json { render json: ig_names.flatten }
+      end
+  end
+
   private
 
   # Used so that user can choose the api's method

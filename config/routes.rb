@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   resources :mailchimp_api_keys, controller: 'api_keys', type: 'MailchimpApiKey', only: [:edit, :update]
 
   resources :activation_rules
+  get "/mailchimp_actuation_rules/load_group_names", to: 'mailchimp_actuation_rules#load_group_names'
   resources :mailchimp_actuation_rules
   resources :rule_associations
 
-  resources :notifications, only: [:index, :show]
+  resources :notifications, only: [:index, :show, :destroy]
   post "/notifications/:token", to: 'notifications#create'
-
   post "/helpscout_info/:token", to: 'helpscout_info#get_notification', as: 'helpscout_info'
 
 end

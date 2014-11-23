@@ -2,6 +2,7 @@ class NotificationsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   skip_before_filter :authenticate_user!, only: :create
 
+  before_action :set_notification, only: [:destroy]
   layout 'client'
 
   def index
@@ -13,10 +14,19 @@ class NotificationsController < ApplicationController
     check_ownership(@notification, notifications_url)
   end
 
+  def destroy
+    @notification.destroy
+    respond_to do |format|
+      format.html { redirect_to @notification, notice: 'Notificação foi excluída com sucesso.' }
+      format.json { head :no_content }
+    end
+  end
+
   def create
     user = User.find_by_hotmart_token_and_hottok(params[:token], params[:hottok]).try(:first)
     
     if user
+      byebug
       msgs = 
         user.activation_rules.map do |regra|
           if(regra.mailchimp_actuation_rules)
@@ -34,6 +44,11 @@ class NotificationsController < ApplicationController
 
   private
 
+  def set_notification
+    @notification = Notification.find_by_id(params[:id])
+    check_ownership(@notification, notifications_url)
+  end
+
   def runActuationRules(user, rule)
     rule.mailchimp_actuation_rules.map { |act_rule| act_rule.run(user, params, rule.id) }
   end
@@ -41,16 +56,17 @@ class NotificationsController < ApplicationController
   def record_notification(user_id, msgs)
     hn = record_hotmart_notification(user_id)
 
+
     msgs.each do |acti_msg|
       mc_msg = ""
       acti_msg.each do |mc_actuation_msg|
         mc_msg += "(#{mc_actuation_msg[:name]}) #{mc_actuation_msg[:error] || mc_actuation_msg[:success]}\n"
-      end
+      end unless acti_msg.blank?
 
       Notification.create!(
         user_id: user_id,
-        activation_rule_id: acti_msg.first[:activation_rule],
-        hotmart_notification_id: hn.id,
+        activation_rule_id: acti_msg.try(:first).try(:[], :activation_rule),
+        hotmart_notification_id: hn.try(:id),
         mailchimp_response: mc_msg
         )
     end
