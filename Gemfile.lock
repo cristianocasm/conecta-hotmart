@@ -163,6 +163,7 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.1)
     multi_json (1.10.1)
+    mysql2 (0.3.17)
     newrelic_rpm (3.9.0.229)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
@@ -329,6 +330,7 @@ DEPENDENCIES
   jquery-turbolinks
   less-rails
   mailchimp-api (= 2.0.5)
+  mysql2
   newrelic_rpm
   pg
   rack-mini-profiler
