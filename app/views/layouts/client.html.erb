@@ -27,7 +27,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.name %> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+                <%= link_to 'Sair', destroy_user_session_path, :method => :delete %></li>
               </ul>
             </li>
           </ul>
@@ -47,19 +47,19 @@
         <div class="col-sm-3">
           <ul class='nav nav-sidebar'>
             <li class=<%= 'active' if is_active?('api_keys') %>>
-              <%= link_to t('api.integration'), edit_hotmart_api_key_path(current_user.hotmart_api_key.first.id) %>
+              <%= link_to 'Integração', edit_hotmart_api_key_path(current_user.hotmart_api_key.first.id) %>
             </li>
             <li class=<%= 'active' if is_active?('activation_rules') %>>
-              <%= link_to t('api.rule.rules'), activation_rules_path %>
+              <%= link_to 'Regras Hotmart', activation_rules_path %>
             </li>
             <li class=<%= 'active' if is_active?('mailchimp_actuation_rules') %>>
-              <%= link_to t('api.rule.mailchimp_actuation_rules'), mailchimp_actuation_rules_path %>
+              <%= link_to 'Regras Mailchimp', mailchimp_actuation_rules_path %>
             </li>
             <li class=<%= 'active' if is_active?('rule_associations') %>>
-              <%= link_to t('api.rule.rule_associations'), rule_associations_path %>
+              <%= link_to 'Associação de regras', rule_associations_path %>
             </li>
             <li class=<%= 'active' if is_active?('notifications') %>>
-              <%= link_to t('api.rule.notification.logs'), notifications_path %>
+              <%= link_to 'Logs', notifications_path %>
             </li>
           </ul>
         </div>
