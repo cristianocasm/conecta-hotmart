@@ -93,7 +93,7 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Fix some problems related to Turbolinks/JavaScript integration
 gem 'jquery-turbolinks'
 # User authentication
-gem 'devise'
+gem 'devise', '3.2.3'
 # Helpers for fontawesome
 gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status
