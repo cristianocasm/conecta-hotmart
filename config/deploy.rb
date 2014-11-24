@@ -38,7 +38,7 @@ task :environment do
 end
 
 # Arquivos e pastas a serem compartilhadas entre os releases
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['config/database.yml', 'config/application.yml' 'log']
 # Put any custom mkdir's in here for when `mina setup` is ran.
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
@@ -53,7 +53,9 @@ task :setup => :environment do
 
   # Cria arquivo "database.yml" dentro de /home/rails/shared/config
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
+
+  # Cria arquivo "application.yml" dentro de /home/rails/shared/config
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/application.yml"]
 end
 
 desc "Deploys the current version to the server."
