@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, '104.131.77.228'
-set :deploy_to, '/home/rails/'
+set :deploy_to, '/home/controle/'
 set :repository, 'https://cristianocasm@bitbucket.org/hotappsplugins/conecta-hotmart.git'
 set :branch, 'master'
 set :rails_env, 'production'
@@ -22,7 +22,7 @@ set :term_mode, nil
 set :rvm_path, '/usr/local/rvm/bin/rvm'
 
 # Optional settings:
-set :user, 'root' # Username in the server to SSH to.
+set :user, 'controle' # Username in the server to SSH to.
 set :port, '4444' # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
@@ -37,8 +37,8 @@ task :environment do
   invoke :'rvm:use[ruby-2.1.2-p95@default]'
 end
 
-# Arquivos e pastas a serem compartilhadas entre os releases
-set :shared_paths, ['config/database.yml', 'config/application.yml' 'log']
+# Arquivos e pastas a serem compartilhadas entre as releases
+set :shared_paths, ['config/database.yml', 'config/application.yml', 'log']
 # Put any custom mkdir's in here for when `mina setup` is ran.
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
