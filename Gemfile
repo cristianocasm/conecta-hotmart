@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -93,7 +93,7 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Fix some problems related to Turbolinks/JavaScript integration
 gem 'jquery-turbolinks'
 # User authentication
-gem 'devise', '3.2.3'
+gem 'devise'
 # Helpers for fontawesome
 gem "font-awesome-rails"
 # Used to avoid Heroku gets into idle status

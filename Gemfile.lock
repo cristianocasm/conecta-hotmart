@@ -321,7 +321,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
-  devise (= 3.2.3)
+  devise
   factory_girl_rails
   faker
   font-awesome-rails
