@@ -8,95 +8,95 @@ UserType.create([
     description: 'Client'}
   ])
 
-puts "Iniciando criação de usuários para testes!!!! Remova esta parte quando estiver criando banco em produção!!!!"
+# puts "Iniciando criação de usuários para testes!!!! Remova esta parte quando estiver criando banco em produção!!!!"
 User.create!([
-  { name: 'Admin',
+  { name: 'Caio Ferreira',
     password: '12345678',
     password_confirmation: '12345678',
-    email: 'cristiano.souza.mendonca@gmail.com',
-    user_type_id: UserType.find_by_name('admin').id },
-  { name: 'Client',
-    password: '12345678',
-    password_confirmation: '12345678',
-    email: 'cristiano.souza.mendonca+client@gmail.com',
-    user_type_id: UserType.find_by_name('client').id }
+    email: 'caiolufer@gmail.com',
+    user_type_id: UserType.find_by_name('admin').id }
+  # { name: 'Client',
+  #   password: '12345678',
+  #   password_confirmation: '12345678',
+  #   email: 'cristiano.souza.mendonca+client@gmail.com',
+  #   user_type_id: UserType.find_by_name('client').id }
   ])
 
-HotmartNotification.create!([
-  {
-    hotmart_transaction: 'abcd',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da Libéria',
-    status: 'started',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'efg',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da Libéria',
-    status: 'approved',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'hij',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da Libéria',
-    status: 'canceled',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'klm',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da Libéria',
-    status: 'chargeback',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'ABCD',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da China',
-    status: 'started',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'EFG',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da China',
-    status: 'approved',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'HIJ',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da China',
-    status: 'canceled',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  },
-  {
-    hotmart_transaction: 'KLM',
-    phone_local_code: '31',
-    phone_number: '3333-4444',
-    prod_name: 'Como importar da China',
-    status: 'chargeback',
-    user_id: User.first.id,
-    customer_email: 'test@test.com'
-  }
-  ])
-puts "Finalizando criação de usuários para testes!!!!!"
+# HotmartNotification.create!([
+#   {
+#     hotmart_transaction: 'abcd',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da Libéria',
+#     status: 'started',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'efg',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da Libéria',
+#     status: 'approved',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'hij',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da Libéria',
+#     status: 'canceled',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'klm',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da Libéria',
+#     status: 'chargeback',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'ABCD',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da China',
+#     status: 'started',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'EFG',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da China',
+#     status: 'approved',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'HIJ',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da China',
+#     status: 'canceled',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   },
+#   {
+#     hotmart_transaction: 'KLM',
+#     phone_local_code: '31',
+#     phone_number: '3333-4444',
+#     prod_name: 'Como importar da China',
+#     status: 'chargeback',
+#     user_id: User.first.id,
+#     customer_email: 'test@test.com'
+#   }
+#   ])
+# puts "Finalizando criação de usuários para testes!!!!!"
 
 DataType.create!([
     { name: 'string',

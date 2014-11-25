@@ -34,7 +34,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.1.2-p95@default]'
+  invoke :'rvm:use[ruby-2.1.2-p242@default]'
 end
 
 # Arquivos e pastas a serem compartilhadas entre as releases
