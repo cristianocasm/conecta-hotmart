@@ -1,15 +1,15 @@
 <%- model_class = MailchimpActuationRule -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>Regras Mailchimp</h1>
 </div>
 
 <div class="table-responsive">
   <table class="table table-striped" id='data_table'>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th colspan="3"></th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th colspan="3">Ações</th>
       </tr>
     </thead>
 
@@ -19,14 +19,12 @@
           <td><%= rule.name %></td>
           <td><%= rule.description %></td>
           <td>
-            <%= link_to t('.show', default: t("helpers.links.show")),
-                        mailchimp_actuation_rule_path(rule), class: 'btn btn-success btn-xs'  %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_mailchimp_actuation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+            <%= link_to 'Exibir', mailchimp_actuation_rule_path(rule), class: 'btn btn-success btn-xs'  %>
+            <%= link_to 'Editar', edit_mailchimp_actuation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
+            <%= link_to 'Excluir',
                         mailchimp_actuation_rule_path(rule),
                         :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :data => { :confirm => 'Tem certeza?' },
                         :class => 'btn btn-xs btn-danger' %>
 
           </td>
@@ -38,6 +36,4 @@
 
 <br>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_mailchimp_actuation_rule_path,
-            :class => 'btn btn-primary' %>
+<%= link_to 'Novo', new_mailchimp_actuation_rule_path, :class => 'btn btn-primary' %>

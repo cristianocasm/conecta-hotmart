@@ -84,10 +84,9 @@
   <dd><%= @notification.purchase_date %></dd>
 <dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              notifications_path, :class => 'btn btn-default'  %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<%= link_to 'Voltar', notifications_path, :class => 'btn btn-default'  %>
+<%= link_to 'Excluir',
               @notification.notification,
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => { :confirm => 'Tem certeza?' },
               :class => 'btn btn-danger' %>

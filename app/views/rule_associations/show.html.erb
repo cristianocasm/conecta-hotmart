@@ -12,12 +12,12 @@
   <% end %>
 <dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
+<%= link_to 'Voltar',
               rule_associations_path, :class => 'btn btn-default'  %>
 <%# link_to t('.edit', :default => t("helpers.links.edit")),
               edit_rule_association_path(@activation_rule), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<%= link_to 'Excluir',
               rule_association_path(@activation_rule),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => { :confirm => 'Tem certeza?' },
               :class => 'btn btn-danger' %>

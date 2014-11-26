@@ -14,7 +14,6 @@
       <%= render 'actuation_param_fields', f: builder %>
     <% end %>
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-              mailchimp_actuation_rules_path, :class => 'btn btn-default' %>
+    <%= link_to 'Cancelar', mailchimp_actuation_rules_path, :class => 'btn btn-default' %>
   </div>
 <% end %>

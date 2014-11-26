@@ -11,7 +11,6 @@
     <%= f.input :mailchimp_actuation_rule_id, collection: @mailchimp_actuation_rules, as: :check_boxes %>
 
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-              rule_associations_path, :class => 'btn btn-default' %>
+    <%= link_to 'Cancelar', rule_associations_path, :class => 'btn btn-default' %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%=t 'api.rule.rule_associations' %></h1>
+  <h1>Associações de Regras</h1>
 </div>
 
 <div class="table-responsive">
@@ -8,7 +8,7 @@
       <tr>
         <th>Regra Hotmart</th>
         <th>Regras Mailchimp</th>
-        <th class="col-sm-2"><%=t '.actions', :default => t("helpers.actions") %></th>
+        <th class="col-sm-2">Ações</th>
       </tr>
     </thead>
 
@@ -23,14 +23,13 @@
               <% end %>
             </td>
             <td>
-              <%= link_to t('.show', default: t("helpers.links.show")),
-                          rule_association_path(ac_rule), class: 'btn btn-success btn-xs'  %>
-              <%# link_to t('.edit', :default => t("helpers.links.edit")),
+              <%= link_to 'Exibir', rule_association_path(ac_rule), class: 'btn btn-success btn-xs'  %>
+              <%# link_to 'Editar',
                           edit_activation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              <%= link_to 'Excluir',
                           rule_association_path(ac_rule),
                           :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :data => { :confirm => 'Tem certeza?' },
                           :class => 'btn btn-xs btn-danger' %>
                           
             </td>
@@ -43,6 +42,6 @@
 
 <br>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to 'Novo',
             new_rule_association_path,
             :class => 'btn btn-primary' %>
