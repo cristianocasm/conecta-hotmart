@@ -34,7 +34,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.1.2-p242@default]'
+  invoke :'rvm:use[ruby-2.1.3-p242@default]'
 end
 
 # Arquivos e pastas a serem compartilhadas entre as releases
@@ -73,6 +73,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
+      queue "sudo /etc/init.d/unicorn restart"
     end
   end
 end
