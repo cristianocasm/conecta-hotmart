@@ -6,8 +6,8 @@
     boolean: :vertical_boolean
   } do |f| %>
 
-  <div class="col-sm-5">
-    <%= f.input :key %>
+  <div class="col-sm-6" id="key">
+    <%= f.input :key, :input_html => { :size => 43 } %>
     <%= fa_icon('check-circle 3x', class: 'icon-green', id: 'validated') if @api_key.validated? %>
     <%= f.submit nil, :class => 'btn btn-primary', value: 'Update' %>
   </div>

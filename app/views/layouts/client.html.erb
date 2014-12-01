@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li>
               <button type="button" class="btn btn-default navbar-btn" id="tour">
-                <i class="fa fa-play-circle"></i> Iniciar Tour
+                <i class="fa fa-play-circle"></i> Iniciar Tutorial
               </button>
             </li>
             <li class="dropdown">
@@ -49,26 +49,34 @@
       <% end %>
 
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3" id="sidebar">
           <ul class='nav nav-sidebar'>
-            <li class=<%= 'active' if is_active?('api_keys') %>>
+            <li <%= "class = active" if is_active?('api_keys') %> id="integracao">
               <%= link_to 'Integração', edit_hotmart_api_key_path(current_user.hotmart_api_key.first.id) %>
             </li>
-            <li class=<%= 'active' if is_active?('activation_rules') %>>
-              <%= link_to 'Regras Hotmart', activation_rules_path %>
+            <li <%= "class = active" if is_active?('activation_rules') %> id="regras_hotmart">
+              <%= link_to 'Regras Hotmart',
+                          activation_rules_path,
+                          id: 'regras_hotmart_link' %>
             </li>
-            <li class=<%= 'active' if is_active?('mailchimp_actuation_rules') %>>
-              <%= link_to 'Regras Mailchimp', mailchimp_actuation_rules_path %>
+            <li <%= "class = active" if is_active?('mailchimp_actuation_rules') %> id="regras_mailchimp">
+              <%= link_to 'Regras Mailchimp',
+                          mailchimp_actuation_rules_path,
+                          id: 'regras_mailchimp_link' %>
             </li>
-            <li class=<%= 'active' if is_active?('rule_associations') %>>
-              <%= link_to 'Associação de regras', rule_associations_path %>
+            <li <%= "class = active" if is_active?('rule_associations') %> id="assoc_regras">
+              <%= link_to 'Associação de regras',
+                          rule_associations_path,
+                          id: 'assoc_regras_link' %>
             </li>
-            <li class=<%= 'active' if is_active?('notifications') %>>
-              <%= link_to 'Logs', notifications_path %>
+            <li <%= "class = active" if is_active?('notifications') %> id="logs">
+              <%= link_to 'Logs',
+                          notifications_path,
+                          id: 'logs_link' %>
             </li>
           </ul>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9" id="dashboard">
           <%= yield %>
         </div>
       </div>

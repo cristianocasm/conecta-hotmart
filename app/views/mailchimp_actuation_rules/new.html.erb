@@ -1,8 +1,10 @@
 <%- model_class = MailchimpActuationRule -%>
 <% if @method.blank? %>
   <% @api_methods.each do |method| %>
-  <%= link_to method[1], new_mailchimp_actuation_rule_path(method: method[1]),
-            :class => 'btn btn-primary' %>
+  <%= link_to method[1],
+              new_mailchimp_actuation_rule_path(method: method[1]),
+              :class => 'btn btn-primary',
+              id: method[1] %>
   <% end %>
 <% else %>
   <div class="page-header">
