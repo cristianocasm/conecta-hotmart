@@ -14,6 +14,7 @@
 #= require jquery.turbolinks
 #= require jquery_ujs
 #= require bootstrap-sprockets
+#= require bootstrap-tour
 #= require dataTables/jquery.dataTables
 #= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 #= require turbolinks
@@ -22,3 +23,16 @@
 jQuery ->
   $('#data_table').dataTable()
   $('a').tooltip()
+
+  $('#tour').click ->
+    tour = new Tour(
+      steps: [
+        {
+          element: "#tour",
+          title: "Vamos começar",
+          content: "Com o Tour você aprenderá: ..."
+        }
+      ])
+    tour.init()
+    tour.start(true)
+    console.log(tour)
