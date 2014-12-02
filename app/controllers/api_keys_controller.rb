@@ -10,11 +10,15 @@ class ApiKeysController < ApplicationController
   def update
     respond_to do |format|
       if @api_key.update(api_key_params)
-        format.html { redirect_to script_api_path(@api_name, @api_key, :edit), notice: I18n.t('api.key_updated', api_name: @api_name) }
-        format.json { render :show, status: :ok, location: @api_key }
+        format.html { redirect_to script_api_path(@api_name, @api_key, :edit),
+                                  notice: "Chave atualizada com sucesso." }
+        format.json { render :show,
+                              status: :ok,
+                              location: @api_key }
       else
         format.html { render :edit }
-        format.json { render json: @api_key.errors, status: :unprocessable_entity }
+        format.json { render json: @api_key.errors,
+                              status: :unprocessable_entity }
       end
     end
   end
@@ -30,7 +34,8 @@ class ApiKeysController < ApplicationController
   end
 
   def get_api_key_name
-    ApiKey.descendants.map { |api_key| api_key.to_s }.include?(params[:type]) ? params[:type] : 'HotmartApiKey'
+    ApiKey.descendants.map { |api_key| api_key.to_s }.
+                        include?(params[:type]) ? params[:type] : 'HotmartApiKey'
   end
 
   def api_class
@@ -38,7 +43,9 @@ class ApiKeysController < ApplicationController
   end
 
   def set_api_key_obj
-    @api_key = current_user.send(params[:type].underscore).try(:first)
+    @api_key = current_user.
+                send(params[:type].underscore).
+                try(:first)
   end
 
 end

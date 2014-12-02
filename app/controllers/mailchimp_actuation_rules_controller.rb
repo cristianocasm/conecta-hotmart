@@ -6,7 +6,9 @@ class MailchimpActuationRulesController < ApplicationController
   # GET /actuation_rules
   # GET /actuation_rules.json
   def index
-    @mailchimp_actuation_rules = current_user.mailchimp_actuation_rules.all
+    @mailchimp_actuation_rules = current_user.
+                                  mailchimp_actuation_rules.
+                                  all
   end
 
   # GET /actuation_rules/1
@@ -27,16 +29,22 @@ class MailchimpActuationRulesController < ApplicationController
   # POST /actuation_rules
   # POST /actuation_rules.json
   def create
-    @mailchimp_actuation_rule = current_user.mailchimp_actuation_rules.new(mailchimp_actuation_rule_params)
+    @mailchimp_actuation_rule = current_user.
+                                  mailchimp_actuation_rules.
+                                  new(mailchimp_actuation_rule_params)
 
     respond_to do |format|
       if @mailchimp_actuation_rule.save
-        format.html { redirect_to @mailchimp_actuation_rule, notice: 'Actuation rule was successfully created.' }
-        format.json { render :show, status: :created, location: @mailchimp_actuation_rule }
+        format.html { redirect_to @mailchimp_actuation_rule,
+                                  notice: 'Regra Mailchimp criada com sucesso.' }
+        format.json { render :show,
+                              status: :created,
+                              location: @mailchimp_actuation_rule }
       else
         @method = @mailchimp_actuation_rule.api_method
         format.html { render :new }
-        format.json { render json: @mailchimp_actuation_rule.errors, status: :unprocessable_entity }
+        format.json { render json: @mailchimp_actuation_rule.errors,
+                              status: :unprocessable_entity }
       end
     end
   end
@@ -46,11 +54,15 @@ class MailchimpActuationRulesController < ApplicationController
   def update
     respond_to do |format|
       if @mailchimp_actuation_rule.update(mailchimp_actuation_rule_params)
-        format.html { redirect_to @mailchimp_actuation_rule, notice: 'Actuation rule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @mailchimp_actuation_rule }
+        format.html { redirect_to @mailchimp_actuation_rule, 
+                                  notice: 'Regra Mailchimp atualizada com sucesso.' }
+        format.json { render :show,
+                              status: :ok,
+                              location: @mailchimp_actuation_rule }
       else
         format.html { render :edit }
-        format.json { render json: @mailchimp_actuation_rule.errors, status: :unprocessable_entity }
+        format.json { render json: @mailchimp_actuation_rule.errors,
+                              status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +72,8 @@ class MailchimpActuationRulesController < ApplicationController
   def destroy
     @mailchimp_actuation_rule.destroy
     respond_to do |format|
-      format.html { redirect_to @mailchimp_actuation_rule, notice: 'Actuation rule was successfully destroyed.' }
+      format.html { redirect_to @mailchimp_actuation_rule, 
+                                  notice: 'Regra Mailchimp excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -99,12 +112,15 @@ class MailchimpActuationRulesController < ApplicationController
 
   def build_api_method_arguments
     @method = MailchimpApiMethod.find_by_name(params[:method])
-    @mailchimp_actuation_rule.arguments = MailchimpActuationRule.mount_by_method(@method, current_user)
+    @mailchimp_actuation_rule.arguments = MailchimpActuationRule.
+                                            mount_by_method(@method, current_user)
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_mailchimp_actuation_rule
-    @mailchimp_actuation_rule = current_user.mailchimp_actuation_rules.find_by_id(params[:id])
+    @mailchimp_actuation_rule = current_user.
+                                  mailchimp_actuation_rules.
+                                  find_by_id(params[:id])
     check_ownership(@mailchimp_actuation_rule, mailchimp_actuation_rule_url)
   end
 

@@ -28,11 +28,15 @@ class ApiParamsController < ApplicationController
 
     respond_to do |format|
       if @api_param.save
-        format.html { redirect_to @api_param, notice: 'Param was successfully created.' }
-        format.json { render :show, status: :created, location: @api_param }
+        format.html { redirect_to @api_param,
+                                  notice: 'Parâmetro criado com sucesso.' }
+        format.json { render :show,
+                              status: :created,
+                              location: @api_param }
       else
         format.html { render :new }
-        format.json { render json: @api_param.errors, status: :unprocessable_entity }
+        format.json { render json: @api_param.errors,
+                              status: :unprocessable_entity }
       end
     end
   end
@@ -40,11 +44,15 @@ class ApiParamsController < ApplicationController
   def update
     respond_to do |format|
       if @api_param.update(api_param_params)
-        format.html { redirect_to @api_param, notice: 'Param was successfully updated.' }
-        format.json { render :show, status: :ok, location: @api_param }
+        format.html { redirect_to @api_param,
+                                  notice: 'Parâmetro atualizado com sucesso.' }
+        format.json { render :show,
+                              status: :ok,
+                              location: @api_param }
       else
         format.html { render :edit }
-        format.json { render json: @api_param.errors, status: :unprocessable_entity }
+        format.json { render json: @api_param.errors,
+                                    status: :unprocessable_entity }
       end
     end
   end
@@ -52,7 +60,8 @@ class ApiParamsController < ApplicationController
   def destroy
     @api_param.destroy
     respond_to do |format|
-      format.html { redirect_to @api_param, notice: 'Param was successfully destroyed.' }
+      format.html { redirect_to @api_param,
+                                notice: 'Parâmetro excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +73,8 @@ class ApiParamsController < ApplicationController
   end
 
   def get_api_name
-    ApiParam.descendants.map { |api| api.to_s }.include?(params[:type]) ? params[:type] : 'HotmartParam'
+    ApiParam.descendants.map { |api| api.to_s }.
+                          include?(params[:type]) ? params[:type] : 'HotmartParam'
   end
 
   def api_class

@@ -10,23 +10,30 @@ class NotificationsController < ApplicationController
   end
 
   def show
-    @notification = current_user.notifications.find(params[:id]).try(:hotmart_notification)
+    @notification = current_user.
+                      notifications.
+                      find(params[:id]).
+                      try(:hotmart_notification)
     check_ownership(@notification, notifications_url)
   end
 
   def destroy
     @notification.destroy
     respond_to do |format|
-      format.html { redirect_to @notification, notice: 'Notificação foi excluída com sucesso.' }
+      format.html { redirect_to @notification,
+                                notice: 'Notificação excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
 
   def create
-    user = User.find_by_hotmart_token_and_hottok(params[:token], params[:hottok]).try(:first)
+    user = User.
+            find_by_hotmart_token_and_hottok(
+              params[:token],
+              params[:hottok]
+            ).try(:first)
     
     if user
-      byebug
       msgs = 
         user.activation_rules.map do |regra|
           if(regra.mailchimp_actuation_rules)
@@ -45,7 +52,8 @@ class NotificationsController < ApplicationController
   private
 
   def set_notification
-    @notification = Notification.find_by_id(params[:id])
+    @notification = Notification.
+                    find_by_id(params[:id])
     check_ownership(@notification, notifications_url)
   end
 
@@ -55,7 +63,6 @@ class NotificationsController < ApplicationController
 
   def record_notification(user_id, msgs)
     hn = record_hotmart_notification(user_id)
-
 
     msgs.each do |acti_msg|
       mc_msg = ""

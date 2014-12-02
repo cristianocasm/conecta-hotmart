@@ -9,7 +9,7 @@ RSpec.describe 'ActivationRules', type: :feature do
     visit '/login'
     fill_in 'Email', with: client.email
     fill_in 'Password', with: client.password
-    click_button 'Sign in'
+    click_button 'Entrar'
   }
 
   feature "CRUD" do
