@@ -1,6 +1,7 @@
 class MailchimpActuationRulesController < ApplicationController
   layout 'client'
   before_action :set_mailchimp_actuation_rule, only: [:show, :edit, :update, :destroy]
+  before_action :check_whether_api_key_was_created
 
   # GET /actuation_rules
   # GET /actuation_rules.json
@@ -83,6 +84,13 @@ class MailchimpActuationRulesController < ApplicationController
   end
 
   private
+
+  def check_whether_api_key_was_created
+    apiKeyObj = current_user.mailchimp_api_key.first
+    redirect_to edit_mailchimp_api_key_path(apiKeyObj.id),
+        alert: "Para acessar esta área informe abaixo \
+                  sua API Key do Mailchimp." if apiKeyObj.key.blank?
+  end
 
   # Used so that user can choose the api's method
   def force_user_choose_an_api_method

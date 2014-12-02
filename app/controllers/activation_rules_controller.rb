@@ -2,6 +2,7 @@ class ActivationRulesController < ApplicationController
   layout 'client'
   before_action :set_rule_name
   before_action :set_activation_rule, only: [:show, :edit, :update, :destroy]
+  before_action :check_whether_api_key_was_created
 
   # GET /rules
   # GET /rules.json
@@ -32,11 +33,15 @@ class ActivationRulesController < ApplicationController
 
     respond_to do |format|
       if @activation_rule.save
-        format.html { redirect_to @activation_rule, notice: 'Rule was successfully created.' }
-        format.json { render :show, status: :created, location: @activation_rule }
+        format.html { redirect_to @activation_rule,
+                                  notice: 'Regra criada com sucesso' }
+        format.json { render :show,
+                              status: :created,
+                              location: @activation_rule }
       else
         format.html { render :new }
-        format.json { render json: @activation_rule.errors, status: :unprocessable_entity }
+        format.json { render json: @activation_rule.errors,
+                              status: :unprocessable_entity }
       end
     end
   end
@@ -46,11 +51,15 @@ class ActivationRulesController < ApplicationController
   def update
     respond_to do |format|
       if @activation_rule.update(activation_rule_params)
-        format.html { redirect_to @activation_rule, notice: 'Rule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @activation_rule }
+        format.html { redirect_to @activation_rule,
+                                  notice: 'Regra atualizada com sucesso' }
+        format.json { render :show,
+                              status: :ok,
+                              location: @activation_rule }
       else
         format.html { render :edit }
-        format.json { render json: @activation_rule.errors, status: :unprocessable_entity }
+        format.json { render json: @activation_rule.errors,
+                                    status: :unprocessable_entity }
       end
     end
   end
@@ -60,12 +69,20 @@ class ActivationRulesController < ApplicationController
   def destroy
     @activation_rule.destroy
     respond_to do |format|
-      format.html { redirect_to activation_rules_url, notice: 'Rule was successfully destroyed.' }
+      format.html { redirect_to activation_rules_url,
+                                notice: 'Regra excluída com sucesso' }
       format.json { head :no_content }
     end
   end
 
   private
+
+  def check_whether_api_key_was_created
+    apiKeyObj = current_user.hotmart_api_key.first
+    redirect_to edit_hotmart_api_key_path(apiKeyObj.id),
+        alert: "Para acessar esta área informe abaixo \
+                  seu token do Hotmart." if apiKeyObj.key.blank?
+  end
 
   def set_rule_name
     @activation_rule_name = get_activation_rule_name
