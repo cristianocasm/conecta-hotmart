@@ -17,13 +17,13 @@
 </ul>
 
 <% if request.path =~ /^\/hotmart_api_keys\// %>
-  <div id="hotmart_callback" class="col-sm-6">
+  <div id="hotmart_callback" class="col-sm-7">
     <mark><%= notification_url(current_user.hotmart_token) %></mark>
   </div>
   <br />
 <% end %>
 <% if request.path =~ /^\/helpscout_api_keys\// %>
-  <div id="helpscout_callback" class="col-sm-6">
+  <div id="helpscout_callback" class="col-sm-7">
     <mark><%= helpscout_info_url(current_user.helpscout_token) %></mark>
   </div>
   <br />
