@@ -8,6 +8,7 @@
   </div>
   <div class="col-md-6" id=<%= f.object.argument.api_param.name == 'group_name' ? "div_input_group_name" : "" %> >
     <%= f.input_field :value, create_options_for_actuation_rules(f.object.argument.api_param) unless f.object.argument.api_param.name == 'group_name'  %>
+    <%= f.input_field :placeholder, as: :hidden %>
   </div>
   <div class="col-md-1" >
     <%= link_to '#', id: :add_group_name, style: "display:none" do %>

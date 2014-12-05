@@ -134,7 +134,8 @@ class MailchimpActuationRulesController < ApplicationController
                 :actuation_params_attributes => [
                   :id,
                   :argument_id,
-                  :value
+                  :value,
+                  :placeholder
                 ]
               )
   end
