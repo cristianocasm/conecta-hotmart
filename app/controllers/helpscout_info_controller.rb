@@ -41,7 +41,7 @@ class HelpscoutInfoController < ApplicationController
     unless notifications.blank?
       ntfc = notifications.first
       html = 
-      "<h4>#{ntfc.name.humanize}</h4>
+      "<h4>#{ntfc.name.titleize}</h4>
         <p class='muted'>(#{ntfc.phone_local_code}) #{ntfc.phone_number}</p>
             PROD
             TRANS
