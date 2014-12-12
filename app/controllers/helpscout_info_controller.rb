@@ -17,7 +17,7 @@ class HelpscoutInfoController < ApplicationController
                           user.id,
                           params[:helpscout_info][:customer][:email]
                         )
-      html = build_success_html_response(notifications, user)
+      html = build_success_html_response(notifications)
 
       render json: html, status: 200
     else
@@ -35,13 +35,13 @@ class HelpscoutInfoController < ApplicationController
     Base64.encode64(hmac).strip == signature.strip
   end
 
-  def build_success_html_response(notifications, user)
+  def build_success_html_response(notifications)
     html = nil
     
     unless notifications.blank?
       ntfc = notifications.first
       html = 
-      "<h4>#{user.name.humanize}</h4>
+      "<h4>#{ntfc.name.humanize}</h4>
         <p class='muted'>(#{ntfc.phone_local_code}) #{ntfc.phone_number}</p>
             PROD
             TRANS
