@@ -13,7 +13,7 @@ class HelpscoutInfoController < ApplicationController
 
     logger.info "data: #{data}"
     logger.info "signature: #{signature}"
-    logger.info "user: #{user}"
+    logger.info "user: #{user.to_hash}"
 
     if is_from_help_scout?(data, signature, secret_key)
       notifications = HotmartNotification.
