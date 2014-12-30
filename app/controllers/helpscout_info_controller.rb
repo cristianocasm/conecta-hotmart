@@ -2,7 +2,7 @@ class HelpscoutInfoController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :get_notification
   skip_before_filter :authenticate_user!, only: :get_notification
 
-  def get_notification    
+  def get_notification
     data = params[:helpscout_info].to_json
     signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
     user = User.find_by_helpscout_token(params[:token])
@@ -10,6 +10,10 @@ class HelpscoutInfoController < ApplicationController
                   try(:helpscout_api_key).
                   try(:first).
                   try(:key)
+
+    logger.info "data: #{data}"
+    logger.info "signature: #{signature}"
+    logger.info "user: #{user}"
 
     if is_from_help_scout?(data, signature, secret_key)
       notifications = HotmartNotification.
