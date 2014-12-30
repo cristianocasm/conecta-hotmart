@@ -75,7 +75,7 @@ end
 
 group :production do
   # Enable serving assets in production - It was important for hosting at Heroku
-  gem 'rails_12factor'
+  # gem 'rails_12factor'
   # MySQL
   gem 'mysql2'
 end
