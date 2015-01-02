@@ -18,6 +18,7 @@
 
 <%= link_to 'Voltar', activation_rules_path, :class => 'btn btn-default' %>
 <%= link_to 'Editar', edit_activation_rule_path(@activation_rule), :class => 'btn btn-default' %>
+<%= link_to 'Duplicar', new_activation_rule_path(id: @activation_rule.id), :class => 'btn btn-warning' %>
 <%= link_to 'Excluir',
               @activation_rule,
               :method => 'delete',

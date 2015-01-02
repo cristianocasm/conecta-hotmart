@@ -17,8 +17,12 @@ class ActivationRulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @activation_rule = ActivationRule.new
-    @activation_rule.api_params = HotmartParam.allowed_in_activation_rule
+    if params[:id].blank?
+      @activation_rule = ActivationRule.new
+      @activation_rule.api_params = HotmartParam.allowed_in_activation_rule
+    else
+      @activation_rule = ActivationRule.find_by_id(params[:id])
+    end
   end
 
   # GET /rules/1/edit

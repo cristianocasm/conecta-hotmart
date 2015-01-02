@@ -9,6 +9,6 @@
     <%= f.input_field :api_param_id, as: :hidden, value: activation_param.api_param.id %>
   </div>
   <div class="col-md-7">
-    <%= f.input_field :value, create_options(activation_param) %>
+    <%= f.input_field :value, create_options(activation_param).merge!(value: activation_param.value) %>
   </div>
 </div>

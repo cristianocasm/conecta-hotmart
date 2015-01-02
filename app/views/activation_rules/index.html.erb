@@ -21,6 +21,7 @@
           <td>
             <%= link_to 'Exibir', rule, class: 'btn btn-success btn-xs'  %>
             <%= link_to 'Editar', edit_activation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
+            <%= link_to 'Duplicar', new_activation_rule_path(id: rule.id), :class => 'btn btn-warning btn-xs' %>
             <%= link_to 'Excluir', rule,
                         :method => :delete,
                         :data => { :confirm => 'Tem certeza?' },
@@ -32,6 +33,6 @@
   </table>
 </div
 
-<br>
+<br />
 
 <%= link_to 'Novo', new_activation_rule_path, :class => 'btn btn-primary', id: 'botao_novo' %>
