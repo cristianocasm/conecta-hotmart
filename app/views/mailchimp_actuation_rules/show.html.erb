@@ -12,7 +12,7 @@
   <dd><%= @mailchimp_actuation_rule.api_method.name %></dd>
   <% @mailchimp_actuation_rule.actuation_params.each do |param| %>
     <dt><strong><%= ApiParam.human_attribute_name(param.argument.api_param.name) %>:</strong></dt>
-    <dd><%= param.placeholder || param.value %></dd>
+    <dd><%= param.placeholder.blank? ? param.value : param.placeholder %></dd>
   <% end %>
 <dl>
 
