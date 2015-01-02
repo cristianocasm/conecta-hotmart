@@ -21,10 +21,11 @@ class ActivationRulesController < ApplicationController
       @activation_rule = ActivationRule.new
       @activation_rule.api_params = HotmartParam.allowed_in_activation_rule
     else
-      @activation_rule = ActivationRule.new(ActivationRule.find_by_id(params[:id]).attributes)
-      @activation_rule.activation_params.each do |ap|
-        ap.id = nil
-      end
+      @activation_rule = ActivationRule.duplicate(params[:id])
+      # @activation_rule = ActivationRule.new(ActivationRule.find_by_id(params[:id]).attributes)
+      # @activation_rule.activation_params.each do |ap|
+      #   ap.id = nil
+      # end
     end
   end
 

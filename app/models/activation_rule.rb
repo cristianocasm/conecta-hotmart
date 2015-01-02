@@ -43,4 +43,11 @@ class ActivationRule < ActiveRecord::Base
 
     return true
   end
+
+  def self.duplicate(id)
+    attrs = self.find_by_id(id).attributes
+    obj = self.new(attrs)
+    obj.activation_params.each { |ap| ap.id = nil }
+    obj
+  end
 end
