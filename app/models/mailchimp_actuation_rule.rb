@@ -44,8 +44,12 @@ class MailchimpActuationRule < ActiveRecord::Base
           self.arguments.find_by_position(8).actuation_params.first.value    # envia email de boas vindas (*send_welcome)
           )
       rescue => e
+        logger.info "**************Exceção lançada no método subscribe do Mailchimp***************"
+        logger.info retorno
         return build_returning(:error, e.message, rule_id)
       else
+        logger.info "**************Retorno considerado sucesso no método subscribe do Mailchimp***************"
+        logger.info retorno
         return build_returning(:success, "E-mail cadastrado na lista com sucesso", rule_id)
       end
     when 'unsubscribe'
@@ -58,8 +62,12 @@ class MailchimpActuationRule < ActiveRecord::Base
           self.arguments.find_by_position(5).actuation_params.first.value, 
           )
       rescue => e
+        logger.info "**************Exceção lançada no método unsubscribe do Mailchimp***************"
+        logger.info retorno
         return build_returning(:error, e.message, rule_id)
       else
+        logger.info "**************Retorno considerado sucesso no método unsubscribe do Mailchimp***************"
+        logger.info retorno
         return build_returning(:success, "E-mail descadastrado da lista com sucesso", rule_id)
       end
     when  'update'
@@ -72,8 +80,12 @@ class MailchimpActuationRule < ActiveRecord::Base
         self.arguments.find_by_position(4).actuation_params.first.value,   # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
         )
       rescue => e
+        logger.info "**************Exceção lançada no método update do Mailchimp***************"
+        logger.info retorno
         return build_returning(:error, e.message, rule_id)
       else
+        logger.info "**************Retorno considerado sucesso no método update do Mailchimp***************"
+        logger.info retorno
         return build_returning(:success, "Atualizado com sucesso", rule_id)
       end
     end
