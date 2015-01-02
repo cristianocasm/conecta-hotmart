@@ -11,10 +11,6 @@ class HelpscoutInfoController < ApplicationController
                   try(:first).
                   try(:key)
 
-    logger.info "data: #{data}"
-    logger.info "signature: #{signature}"
-    logger.info "user: #{user.to_json}"
-
     if is_from_help_scout?(data, signature, secret_key)
       notifications = HotmartNotification.
                         find_latest_notifications_per_product(
