@@ -33,15 +33,16 @@ class MailchimpActuationRule < ActiveRecord::Base
     case method.name
     when 'subscribe'
       begin
+        ap = self.actuation_params
         retorno = mailchimp.lists.subscribe(
-          self.arguments.find_by_position(1).actuation_params.first.value, # id da lista (*list_id)
-          { email: params[:email] }, # o e-mail a ser cadastrado (extraído de params) (*email)
-          mount_groupings,  # o nome dos grupos (*group_name)
-          self.arguments.find_by_position(4).actuation_params.first.value,   # o tipo de email (text ou html) (*email_type)
-          self.arguments.find_by_position(5).actuation_params.first.value,   # utilizar ou não double opt-in (*double_optin)
-          self.arguments.find_by_position(6).actuation_params.first.value,   # permitir atualização de informações de usuário que já esteja cadastrado na lista (*update_existing)
-          self.arguments.find_by_position(7).actuation_params.first.value,   # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
-          self.arguments.find_by_position(8).actuation_params.first.value    # envia email de boas vindas (*send_welcome)
+          self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
+          { email: params[:email] },                                                               # o e-mail a ser cadastrado (extraído de params) (*email)
+          mount_groupings,                                                                         # o nome dos grupos (*group_name)
+          self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
+          self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value, # utilizar ou não double opt-in (*double_optin)
+          self.arguments.find_by_position(6).actuation_params.where(id: ap.map(&:id)).first.value, # permitir atualização de informações de usuário que já esteja cadastrado na lista (*update_existing)
+          self.arguments.find_by_position(7).actuation_params.where(id: ap.map(&:id)).first.value, # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
+          self.arguments.find_by_position(8).actuation_params.where(id: ap.map(&:id)).first.value  # envia email de boas vindas (*send_welcome)
           )
       rescue => e
         logger.info "**************Exceção lançada no método subscribe do Mailchimp***************"
@@ -49,17 +50,27 @@ class MailchimpActuationRule < ActiveRecord::Base
         return build_returning(:error, e.message, rule_id)
       else
         logger.info "**************Retorno considerado sucesso no método subscribe do Mailchimp***************"
+        logger.info "Enviado:
+          #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{{ email: params[:email] }} \n
+          #{mount_groupings} \n
+          #{self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(6).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(7).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(8).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:success, "E-mail cadastrado na lista com sucesso", rule_id)
       end
     when 'unsubscribe'
       begin
+        ap = self.actuation_params
         retorno = mailchimp.lists.unsubscribe(
-          self.arguments.find_by_position(1).actuation_params.first.value, # id da lista (*list_id)
+          self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
           { email: params[:email] }, # o e-mail a ser cadastrado (extraído de params) (*email)
-          self.arguments.find_by_position(3).actuation_params.first.value,   # o tipo de email (text ou html) (*email_type)
-          self.arguments.find_by_position(4).actuation_params.first.value,   # utilizar ou não double opt-in (*double_optin)
-          self.arguments.find_by_position(5).actuation_params.first.value, 
+          self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
+          self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value, # utilizar ou não double opt-in (*double_optin)
+          self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value
           )
       rescue => e
         logger.info "**************Exceção lançada no método unsubscribe do Mailchimp***************"
@@ -67,20 +78,33 @@ class MailchimpActuationRule < ActiveRecord::Base
         return build_returning(:error, e.message, rule_id)
       else
         logger.info "**************Retorno considerado sucesso no método unsubscribe do Mailchimp***************"
+        logger.info "Enviado:
+          #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{{ email: params[:email] }} \n
+          #{self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:success, "E-mail descadastrado da lista com sucesso", rule_id)
       end
     when  'update'
       begin
-      retorno = mailchimp.lists.update_member(
-        self.arguments.find_by_position(1).actuation_params.first.value, # id da lista (*list_id)
-        { email: params[:email] },
-        mount_groupings,  # o nome dos grupos (*group_name)
-        self.arguments.find_by_position(3).actuation_params.first.value,   # o tipo de email (text ou html) (*email_type)
-        self.arguments.find_by_position(4).actuation_params.first.value,   # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
-        )
+        ap = self.actuation_params
+        retorno = mailchimp.lists.update_member(
+          self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
+          { email: params[:email] },
+          mount_groupings,                                                                         # o nome dos grupos (*group_name)
+          self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
+          self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value  # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
+          )
       rescue => e
         logger.info "**************Exceção lançada no método update do Mailchimp***************"
+        logger.info "Enviado:
+          #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{{ email: params[:email] }} \n
+          #{mount_groupings} \n
+          #{self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value} \n
+          #{self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:error, e.message, rule_id)
       else
@@ -108,7 +132,8 @@ class MailchimpActuationRule < ActiveRecord::Base
   private
 
   def mount_groupings
-    params = self.arguments.find_by_position('3').actuation_params.where("mailchimp_actuation_rule_id = ?", self.id)
+    ap = self.actuation_params
+    params = self.arguments.find_by_position('3').actuation_params.where(id: ap.map(&:id)).first.value
     list_groupings = params.map(&:value) unless params.blank? # pegando lista de ids da lista e ids dos grupos no formato "listid_groupid"
     groupings = []
     
