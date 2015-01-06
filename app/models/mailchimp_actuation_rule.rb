@@ -37,7 +37,7 @@ class MailchimpActuationRule < ActiveRecord::Base
         retorno = mailchimp.lists.subscribe(
           self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
           { email: params[:email] },                                                               # o e-mail a ser cadastrado (extraído de params) (*email)
-          mount_groupings,                                                                         # o nome dos grupos (*group_name)
+          mount_groupings(params[:email]),                                                                         # o nome dos grupos (*group_name)
           self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
           self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value, # utilizar ou não double opt-in (*double_optin)
           self.arguments.find_by_position(6).actuation_params.where(id: ap.map(&:id)).first.value, # permitir atualização de informações de usuário que já esteja cadastrado na lista (*update_existing)
@@ -49,15 +49,6 @@ class MailchimpActuationRule < ActiveRecord::Base
         return build_returning(:error, e.message, rule_id)
       else
         logger.info "**************Retorno considerado sucesso no método subscribe do Mailchimp***************"
-        logger.info "Enviado:
-          #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{{ email: params[:email] }} \n
-          #{mount_groupings} \n
-          #{self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{self.arguments.find_by_position(6).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{self.arguments.find_by_position(7).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{self.arguments.find_by_position(8).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:success, "E-mail cadastrado na lista com sucesso", rule_id)
       end
@@ -92,18 +83,12 @@ class MailchimpActuationRule < ActiveRecord::Base
         retorno = mailchimp.lists.update_member(
           self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
           { email: params[:email] },
-          mount_groupings,                                                                         # o nome dos grupos (*group_name)
+          mount_groupings(params[:email]),                                                                         # o nome dos grupos (*group_name)
           self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
           self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value  # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
           )
       rescue => e
         logger.info "**************Exceção lançada no método update do Mailchimp***************"
-        logger.info "Enviado:
-          #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{{ email: params[:email] }} \n
-          #{mount_groupings} \n
-          #{self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value} \n
-          #{self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:error, e.message, rule_id)
       else
@@ -130,27 +115,33 @@ class MailchimpActuationRule < ActiveRecord::Base
 
   private
 
-  def mount_groupings
+  def mount_groupings(email)
     ap = self.actuation_params
     params = self.arguments.find_by_position('3').actuation_params.where(id: ap.map(&:id))
     list_groupings = params.map(&:value) unless params.blank? # pegando lista de ids da lista e ids dos grupos no formato "listid_groupid"
     groupings = []
     
     while !list_groupings.blank?
+      groups = []
       list_id = list_groupings.first.split("_").first
       list_id_regex = Regexp.new(list_id+"_") # pegando "listid_" do primeiro elemento do array
       lg_by_list_id = list_groupings.select { |lg| lg =~ list_id_regex } # pegando todos os elementos da mesma lista
       list_groupings -= lg_by_list_id # removendo os elementos do array
       lg_by_list_id.each do |lg|
         group = lg.split("_").second
-        groupings << { id: list_id, group: group }
+        groups << group
       end
+      groupings << { id: list_id, groups: groups }
     end
 
     if groupings.blank?
       return nil
     else
-      return { merge_vars: { groupings: groupings } }
+      return {
+              merge_vars: { 'new-email' => email,
+                            'groupings' => groupings
+                          }
+             }
     end
   end
 
