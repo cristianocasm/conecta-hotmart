@@ -137,11 +137,7 @@ class MailchimpActuationRule < ActiveRecord::Base
     if groupings.blank?
       return nil
     else
-      return {
-              merge_vars: { 'new-email' => email,
-                            'groupings' => groupings
-                          }
-             }
+      return { merge_vars: { 'groupings' => groupings } }
     end
   end
 
