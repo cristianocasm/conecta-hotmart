@@ -32,7 +32,7 @@ class MailchimpActuationRule < ActiveRecord::Base
 
     case method.name
     when 'subscribe'
-      begin
+      #begin
         ap = self.actuation_params
         retorno = mailchimp.lists.subscribe(
           self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
@@ -44,11 +44,10 @@ class MailchimpActuationRule < ActiveRecord::Base
           self.arguments.find_by_position(7).actuation_params.where(id: ap.map(&:id)).first.value, # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
           self.arguments.find_by_position(8).actuation_params.where(id: ap.map(&:id)).first.value  # envia email de boas vindas (*send_welcome)
           )
-      rescue => e
-        logger.info "**************Exceção lançada no método subscribe do Mailchimp***************"
-        logger.info retorno
-        return build_returning(:error, e.message, rule_id)
-      else
+      #rescue => e
+      #  logger.info "**************Exceção lançada no método subscribe do Mailchimp***************"
+      #  return build_returning(:error, e.message, rule_id)
+      #else
         logger.info "**************Retorno considerado sucesso no método subscribe do Mailchimp***************"
         logger.info "Enviado:
           #{self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value} \n
@@ -61,7 +60,7 @@ class MailchimpActuationRule < ActiveRecord::Base
           #{self.arguments.find_by_position(8).actuation_params.where(id: ap.map(&:id)).first.value} \n"
         logger.info retorno
         return build_returning(:success, "E-mail cadastrado na lista com sucesso", rule_id)
-      end
+      #end
     when 'unsubscribe'
       begin
         ap = self.actuation_params
