@@ -1,5 +1,5 @@
 <%- model_class = MailchimpActuationRule -%>
-<% if @method.blank? %>
+<% if @method.blank? && params[:id].blank? %>
   <% @api_methods.each do |method| %>
   <%= link_to method[1],
               new_mailchimp_actuation_rule_path(method: method[1]),

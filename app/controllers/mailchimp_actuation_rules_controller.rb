@@ -18,8 +18,13 @@ class MailchimpActuationRulesController < ApplicationController
 
   # GET /actuation_rules/new
   def new
-    @mailchimp_actuation_rule = MailchimpActuationRule.new
-    params[:method].blank? ? force_user_choose_an_api_method : build_api_method_arguments
+    if params[:id].blank?
+      @mailchimp_actuation_rule = MailchimpActuationRule.new
+      params[:method].blank? ? force_user_choose_an_api_method : build_api_method_arguments
+    else
+      @mailchimp_actuation_rule = MailchimpActuationRule.find_by_id(params[:id])
+      @method = @mailchimp_actuation_rule.api_method
+    end
   end
 
   # GET /actuation_rules/1/edit
@@ -84,7 +89,7 @@ class MailchimpActuationRulesController < ApplicationController
     interestGroupings = mc.lists.interest_groupings(params[:list_id])
     ig_names = interestGroupings.map do |ig|
       ig["groups"].map do |gp|
-        { id: "#{ig["id"]}_#{gp["id"]}", content: "(#{ig["name"]}) #{gp["name"]}" }
+        { id: "#{ig["id"]}_#{gp["name"].tr(" ","_")}", content: "(#{ig["name"]}) #{gp["name"]}" }
       end
     end
 

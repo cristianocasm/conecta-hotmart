@@ -21,6 +21,7 @@
           <td>
             <%= link_to 'Exibir', mailchimp_actuation_rule_path(rule), class: 'btn btn-success btn-xs'  %>
             <%= link_to 'Editar', edit_mailchimp_actuation_rule_path(rule), :class => 'btn btn-default btn-xs' %>
+            <%= link_to 'Duplicar', new_mailchimp_actuation_rule_path(id: rule.id), :class => 'btn btn-warning btn-xs' %>
             <%= link_to 'Excluir',
                         mailchimp_actuation_rule_path(rule),
                         :method => :delete,

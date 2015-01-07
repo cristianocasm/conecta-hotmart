@@ -6,7 +6,7 @@
     boolean: :vertical_boolean
   } do |f| %>
 
-  <div class="col-sm-5">
+  <div class="col-sm-10">
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input_field :api_method_id, as: :hidden, value: @method.id if @method %>

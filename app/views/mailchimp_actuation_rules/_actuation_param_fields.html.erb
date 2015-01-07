@@ -1,13 +1,13 @@
 <div class="row form-group">
-  <div class="col-md-5" id=<%= f.object.argument.api_param.name == 'group_name' ? "div_argument_id" : "" %>>
+  <div class="col-md-3" id=<%= f.object.argument.api_param.name == 'group_name' ? "div_argument_id" : "" %>>
     <%= link_to '?', '#', "data-toggle" => "tooltip",
                           title: f.object.argument.api_param.description,
                           "data-placement" => "top" %>
     <%= f.label f.object.argument.api_param.name %>
     <%= f.input_field :argument_id, as: :hidden, value: f.object.argument_id %>
   </div>
-  <div class="col-md-6" id=<%= f.object.argument.api_param.name == 'group_name' ? "div_input_group_name" : "" %> >
-    <%= f.input_field :value, create_options_for_actuation_rules(f.object.argument.api_param) unless f.object.argument.api_param.name == 'group_name'  %>
+  <div class="col-md-8" id=<%= f.object.argument.api_param.name == 'group_name' ? "div_input_group_name" : "" %> >
+    <%= f.input_field :value, create_options_for_actuation_rules(f.object.argument.api_param).merge!(value: f.object.value) unless f.object.argument.api_param.name == 'group_name'  %>
     <%= f.input_field :placeholder, as: :hidden %>
   </div>
   <div class="col-md-1" >
