@@ -6,7 +6,7 @@ class HelpscoutInfoController < ApplicationController
     data = params[:helpscout_info].to_json
     logger.debug "*************************\nDATA: #{data}"
     signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
-    logger.debug "*************************\n#SIG: {signature}"
+    logger.debug "*************************\nSIG: #{signature}"
     user = User.find_by_helpscout_token(params[:token])
     secret_key = user.
                   try(:helpscout_api_key).
