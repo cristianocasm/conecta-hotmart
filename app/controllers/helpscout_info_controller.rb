@@ -4,15 +4,17 @@ class HelpscoutInfoController < ApplicationController
 
   def get_notification
     data = params[:helpscout_info].to_json
-    logger.debug "*************************\nDATA: #{data}"
     signature = request.headers["HTTP_X_HELPSCOUT_SIGNATURE"]
-    logger.debug "*************************\nSIG: #{signature}"
     user = User.find_by_helpscout_token(params[:token])
     secret_key = user.
                   try(:helpscout_api_key).
                   try(:first).
                   try(:key)
 
+    logger.debug "*************************secret_key = #{secret_key}"
+    logger.debug "*************************data = #{data}"
+    logger.debug "*************************signature = #{signature}"
+    
     if is_from_help_scout?(data, signature, secret_key)
       notifications = HotmartNotification.
                         find_latest_notifications_per_product(
