@@ -37,7 +37,7 @@ class MailchimpActuationRule < ActiveRecord::Base
         retorno = mailchimp.lists.subscribe(
           self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
           { email: params[:email] },                                                               # o e-mail a ser cadastrado (extraído de params) (*email)
-          mount_groupings(params[:email]),                                                                         # o nome dos grupos (*group_name)
+          mount_groupings(params[:email], params[:transaction]),                                                                         # o nome dos grupos (*group_name)
           self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
           self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value, # utilizar ou não double opt-in (*double_optin)
           self.arguments.find_by_position(6).actuation_params.where(id: ap.map(&:id)).first.value, # permitir atualização de informações de usuário que já esteja cadastrado na lista (*update_existing)
@@ -77,7 +77,7 @@ class MailchimpActuationRule < ActiveRecord::Base
         retorno = mailchimp.lists.update_member(
           self.arguments.find_by_position(1).actuation_params.where(id: ap.map(&:id)).first.value, # id da lista (*list_id)
           params[:email],
-          mount_groupings(params[:email]),                                                                         # o nome dos grupos (*group_name)
+          mount_groupings(params[:email], params[:transaction]),                                                                         # o nome dos grupos (*group_name)
           self.arguments.find_by_position(3).actuation_params.where(id: ap.map(&:id)).first.value, # o tipo de email (text ou html) (*email_type)
           self.arguments.find_by_position(4).actuation_params.where(id: ap.map(&:id)).first.value  # sobrescrever grupos de interesse ou adicionar os fornecidos aos atuais (*replace_interests)
           )
@@ -109,7 +109,8 @@ class MailchimpActuationRule < ActiveRecord::Base
 
   private
 
-  def mount_groupings(email)
+  def mount_groupings(email, transac)
+    byebug
     ap = self.actuation_params
     params = self.arguments.find_by_position('3').actuation_params.where(id: ap.map(&:id)).where("actuation_params.value IS NOT NULL")
     list_groupings = params.map(&:value) unless params.blank? # pegando lista de ids da lista e ids dos grupos no formato "listid_groupid"
@@ -131,7 +132,9 @@ class MailchimpActuationRule < ActiveRecord::Base
     if groupings.blank?
       return nil
     else
-      return { 'groupings' => groupings }
+      grps =  { 'groupings' => groupings }
+      grps.merge!('TRANS_HOT' => transac) if self.arguments.find_by_position(5).actuation_params.where(id: ap.map(&:id)).first.value
+      return grps
     end
   end
 
